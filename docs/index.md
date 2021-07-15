@@ -1,8 +1,9 @@
-## Welcome to GitHub Pages
+## Ingrid to Python/Xarray commands
 
-You can use the [editor on GitHub](https://github.com/naomi-henderson/ingrid2python/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+Our beloved `ingrid` methods are becoming obsolete
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Help us document equivalent python commands using the [editor on GitHub](https://github.com/naomi-henderson/ingrid2python/edit/main/docs/index.md) to maintain and preview the content of these pages.
+
 
 ### Markdown
 
