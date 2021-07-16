@@ -122,3 +122,45 @@ In python, compatible objects (xarray datasets/dataarrays, numbers) can be added
 ```
 </p> </details>
 
+<details> <summary>Detrending</summary> <p>  
+
+```
+%ingrid:
+(ssta.nc)readCDF .ssta [time]detrend-bfl
+```
+
+```
+#python:
+ds = xr.open_dataset('ssta.nc')
+dfit = ds.ssta.polyfit('time', 1, skipna=True)
+ds.ssta - xr.polyval(coord=ds.time, coeffs=dfit.polyfit_coefficients)
+```
+</p> </details>
+
+<details> <summary> Find linear trend</summary> <p>  
+
+```
+%ingrid:
+(ssta.nc)readCDF .ssta dup [time]detrend-bfl sub dup time last VALUE exch T first VALUE sub
+```
+
+```
+#python:
+ds = xr.open_dataset('ssta.nc') 
+dfit = ds.ssta.polyfit('time', 1, skipna=True)
+ds['linear_fit'] = xr.polyval(coord=ds.time, coeffs=dfit.polyfit_coefficients)
+ds['trend'] = (ds.linear_fit[-1] - ds.linear_fit[0])
+```
+</p> </details>
+
+<details> <summary></summary> <p>  
+
+```
+%ingrid:
+```
+
+```
+#python:
+```
+</p> </details>
+
