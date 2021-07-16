@@ -7,13 +7,16 @@ Help us document equivalent python commands using the [editor on GitHub](https:/
 <details>
   <summary>time 12 boxAverage</summary>
 <p>  
+
+##ingrid
+
 ```
-#ingrid
 time 12 boxAverage
 ```
 
+##python
+
 ```
-#python
 .ds.coarsen(time=12,boundary='trim').mean()
 ```
 
