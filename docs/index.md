@@ -11,6 +11,7 @@ Help us document equivalent python commands using the [editor on GitHub](https:/
   <summary>1. Addition</summary>
 <p>  
 In ingrid, compatible objects (streams, numbers) can be added together element by element
+
 ```
 %ingrid:
 <ds1> <ds2> add
