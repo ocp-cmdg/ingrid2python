@@ -1,7 +1,10 @@
 ## Ingrid to Python/Xarray commands
 
 ## Notation
+
+```
 <ds> is either an ingrid `stream` or an xarray `dataset`
+```
 
 <details>
   <summary>1. Addition</summary>
