@@ -3,20 +3,28 @@
 ## Notation
 
 ```
-<ds> is either an ingrid `stream`(or `Field`) or an xarray `dataset` (or `dataarray`)
-<dim> is the name of a dimension/grid (e.g. 'X','lat','time')
-<int> is a single integer 
-<scalar> is a single real number
-<str> is a string
+<ds>	: an ingrid `stream`(or `Field`) or an xarray `dataset` (or `dataarray`)
+<dim>	: name of a dimension/grid (e.g. 'X','lat','time')
+<int>	: integer 
+<scalar>: single real number
+<str>	: string
+<list>  : list of objects (e.g. [2, 'red', (Jan 1950)] )
 ```
 
-further reading: 
-- [Xarray Terminology](http://xarray.pydata.org/en/stable/user-guide/terminology.html)
-- 
+<details> <summary>0. Defining Datasets </summary> <p>  
 
-<details>
-  <summary>1. Addition/Subtraction/Multiplication </summary>
-<p>  
+```
+%ingrid:
+/ds {(file.nc)readCDF} def
+```
+
+```
+#python:
+ds = xr.open_dataset('file.nc')
+```
+</p> </details>
+
+<details> <summary>1. Addition/Subtraction/Multiplication </summary> <p>  
 In ingrid, compatible objects (streams, numbers) can be added together element by element
 
 ```
@@ -25,24 +33,10 @@ In ingrid, compatible objects (streams, numbers) can be added together element b
 ```
 
 In python, compatible objects (xarray datasets/dataarrays, numbers) can be added together
+
 ```
 #python:
 <ds1> + <ds2>
-```
-
-</p>
-</details>
-
-<details> <summary>2. Grid coarsening </summary> <p>  
-
-```
-%ingrid:
- time 12 boxAverage 
-```
-
-```
-#python:
-<ds>.coarsen(time=12,boundary='trim').mean()
 ```
 </p> </details>
 
@@ -72,7 +66,7 @@ In python, compatible objects (xarray datasets/dataarrays, numbers) can be added
 ```
 </p> </details>
 
-<details> <summary>5. Averaging over a grid </summary> <p>  
+<details> <summary>5. Averaging over a dimension </summary> <p>  
 
 ```
 %ingrid:
@@ -84,6 +78,32 @@ In python, compatible objects (xarray datasets/dataarrays, numbers) can be added
 #python:
 <ds>.mean('time')
 <ds>.mean(['X','Y'])
+```
+</p> </details>
+
+<details> <summary>6. Grid coarsening </summary> <p>  
+
+```
+%ingrid:
+ time 12 boxAverage 
+```
+
+```
+#python:
+<ds>.coarsen(time=12,boundary='trim').mean()
+```
+</p> </details>
+
+<details> <summary>7. Running Average </summary> <p>  
+
+```
+%ingrid:
+<ds> time 3 runningAverage
+```
+
+```
+#python:
+<ds>.rolling(time=3, center=True).mean()
 ```
 </p> </details>
 
