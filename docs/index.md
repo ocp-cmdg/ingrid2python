@@ -24,6 +24,21 @@ ds = xr.open_dataset('file.nc')
 ```
 </p> </details>
 
+<details> <summary>- Selecting Data in Datasets </summary> <p>  
+
+```
+%ingrid:
+/ds {(file.nc)readCDF} def
+ds .sst .X
+```
+
+```
+#python:
+ds = xr.open_dataset('file.nc')
+ds.sst.X
+```
+</p> </details>
+
 <details> <summary>- Addition/Subtraction/Multiplication </summary> <p>  
 In ingrid, compatible objects (streams, numbers) can be added together element by element
 
@@ -66,7 +81,7 @@ In python, compatible objects (xarray datasets/dataarrays, numbers) can be added
 ```
 </p> </details>
 
-- <details> <summary> Averaging over a dimension </summary> <p>  
+<details> <summary>- Averaging over a dimension </summary> <p>  
 
 ```
 %ingrid:
@@ -81,7 +96,7 @@ In python, compatible objects (xarray datasets/dataarrays, numbers) can be added
 ```
 </p> </details>
 
-- <details> <summary> Grid coarsening </summary> <p>  
+<details> <summary>- Grid coarsening </summary> <p>  
 
 ```
 %ingrid:
@@ -94,7 +109,7 @@ In python, compatible objects (xarray datasets/dataarrays, numbers) can be added
 ```
 </p> </details>
 
-<details> <summary>7. Running Average </summary> <p>  
+<details> <summary>- Running Average </summary> <p>  
 
 ```
 %ingrid:
