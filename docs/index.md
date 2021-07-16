@@ -3,10 +3,16 @@
 ## Notation
 
 ```
-<ds> is either an ingrid `stream` or an xarray `dataset`
-where an ingrid `stream` is a field or number
-and an xarray `dataset` is a 
+<ds> is either an ingrid `stream`(or `Field`) or an xarray `dataset` (or `dataarray`)
+<dim> is the name of a dimension/grid (e.g. 'X','lat','time')
+<int> is a single integer 
+<scalar> is a single real number
+<str> is a string
 ```
+
+further reading: 
+- [Xarray Terminology](http://xarray.pydata.org/en/stable/user-guide/terminology.html)
+- 
 
 <details>
   <summary>1. Addition/Subtraction/Multiplication </summary>
@@ -31,7 +37,7 @@ In python, compatible objects (xarray datasets/dataarrays, numbers) can be added
 
 ```
 %ingrid:
-<ds> time 12 boxAverage
+ time 12 boxAverage 
 ```
 
 ```
@@ -63,6 +69,21 @@ In python, compatible objects (xarray datasets/dataarrays, numbers) can be added
 ```
 #python:
 <ds>.sel(time=slice('1982-01','1995-12'),lon=slice(20,60))
+```
+</p> </details>
+
+<details> <summary>5. Averaging over a grid </summary> <p>  
+
+```
+%ingrid:
+<ds> [time] average
+<ds> [X Y] average
+```
+
+```
+#python:
+<ds>.mean('time')
+<ds>.mean(['X','Y'])
 ```
 </p> </details>
 
