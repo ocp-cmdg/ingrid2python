@@ -30,7 +30,7 @@ ds
 
 </p> </details>
 
-<details> <summary><h4>Selecting Data in Datasets</h4> </summary> <p>  
+<details> <summary><b style="background-color:DodgerBlue;">Selecting Data in Datasets</b> </summary> <p>  
 A dataset (stream) contains variables, grids, coordinates and metadata. These can be selected by similar methods for ingrid and python. Try selecting `.sst` and `.lon`
 
 ```
