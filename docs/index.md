@@ -4,14 +4,18 @@
 
 `ds` : an ingrid `stream` or an xarray `dataset`
 
+<details> <summary>Opening a Dataset</summary> <p>  
+
 Try this out on [kage](http://kage.ldeo.columbia.edu:81/expert): 
+
 ```
 %ingrid:
 /ds {(/DC/sst.mon.mean.nc) readCDF} def
 ds
 ```
 
-Try this out in a Jupyter Notebook: (type <shift><enter> to see the results)
+Try this out in a Jupyter Notebook: (type "<shift><enter>" to see the results)
+
 ```
 #python:
 import xarray as xr
@@ -20,6 +24,7 @@ os.system('wget ftp://ftp.cdc.noaa.gov/Datasets/COBE/sst.mon.mean.nc')
 ds = xr.open_dataset('sst.mon.mean.nc')
 ds
 ```
+</p> </details>
 
 <details> <summary>Selecting Data in Datasets </summary> <p>  
 A dataset (stream) contains variables, grids, coordinates and metadata. These can be selected by similar methods for ingrid and python. Try selecting `.sst` and `.lon`
