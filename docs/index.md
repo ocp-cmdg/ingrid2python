@@ -2,40 +2,36 @@
 
 ## Notation
 
-```
-<ds>	: an ingrid `stream`(or `Field`) or an xarray `dataset` (or `dataarray`)
-<dim>	: name of a dimension/grid (e.g. 'X','lat','time')
-<int>	: integer 
-<scalar>: single real number
-<str>	: string
-<list>  : list of objects (e.g. [2, 'red', (Jan 1950)] )
-```
+>ds is an ingrid `stream`(or `Field`) or an xarray `dataset` (or `dataarray`)
 
-<details> <summary>Defining Datasets </summary> <p>  
-
+Try this out [kage](http://kage.ldeo.columbia.edu:81/expert): 
 ```
 %ingrid:
-/ds {(file.nc)readCDF} def
+/ds {(/DC/sst.mon.mean.nc) readCDF} def
+ds
 ```
 
+Try this out in a Jupyter Notebook: (type <shift><enter> to see the results)
 ```
 #python:
-ds = xr.open_dataset('file.nc')
+import xarray as xr
+import os
+os.system('wget ftp://ftp.cdc.noaa.gov/Datasets/COBE/sst.mon.mean.nc')
+ds = xr.open_dataset('sst.mon.mean.nc')
+ds
 ```
-</p> </details>
 
 <details> <summary>Selecting Data in Datasets </summary> <p>  
+A dataset (stream) contains variables, grids, coordinates and metadata. These can be selected by similar methods for ingrid and python. Try selecting `.sst` and `.lon`
 
 ```
 %ingrid:
-/ds {(file.nc)readCDF} def
-ds .sst .X
+ds .sst
 ```
 
 ```
 #python:
-ds = xr.open_dataset('file.nc')
-ds.sst.X
+ds.sst
 ```
 </p> </details>
 
@@ -44,14 +40,14 @@ In ingrid, compatible objects (streams, numbers) can be added together element b
 
 ```
 %ingrid:
-<ds1> <ds2> add
+ds .sst 273.15 add
 ```
 
 In python, compatible objects (xarray datasets/dataarrays, numbers) can be added together
 
 ```
 #python:
-<ds1> + <ds2>
+ds.sst + 273.15
 ```
 </p> </details>
 
@@ -59,12 +55,12 @@ In python, compatible objects (xarray datasets/dataarrays, numbers) can be added
 
 ```
 %ingrid:
-<ds> time (Jan 1960) VALUE lat 20 VALUE
+ds time (Jan 1960) VALUE lat 20 VALUE
 ```
 
 ```
 #python:
-<ds>.sel(time= '1960-01', lat=20, method='nearest')
+ds.sel(time= '1960-01', lat=20, method='nearest')
 ```
 </p> </details>
 
@@ -72,12 +68,12 @@ In python, compatible objects (xarray datasets/dataarrays, numbers) can be added
 
 ```
 %ingrid:
-<ds> T (Jan 1982) (Dec 1995) RANGE lon 20 60 RANGE
+ds T (Jan 1982) (Dec 1995) RANGE lon 20 60 RANGE
 ```
 
 ```
 #python:
-<ds>.sel(time=slice('1982-01','1995-12'),lon=slice(20,60))
+ds.sel(time=slice('1982-01','1995-12'),lon=slice(20,60))
 ```
 </p> </details>
 
@@ -85,14 +81,14 @@ In python, compatible objects (xarray datasets/dataarrays, numbers) can be added
 
 ```
 %ingrid:
-<ds> [time] average
-<ds> [X Y] average
+ds [time] average
+ds [lat lon] average
 ```
 
 ```
 #python:
-<ds>.mean('time')
-<ds>.mean(['X','Y'])
+ds.mean('time')
+ds.mean(['lat','lon'])
 ```
 </p> </details>
 
@@ -100,7 +96,7 @@ In python, compatible objects (xarray datasets/dataarrays, numbers) can be added
 
 ```
 %ingrid:
- time 12 boxAverage 
+ds time 12 boxAverage 
 ```
 
 ```
@@ -196,13 +192,13 @@ ds.std('time')
 
 ```
 %ingrid:
-<ds> [X Y] maxover
+<ds> [lon lat] maxover
 <ds> [time] minover
 ```
 
 ```
 #python:
-ds.max(['X','Y'])
+ds.max(['lon','lat'])
 ds.min('time')
 ```
 </p> </details>
@@ -211,12 +207,12 @@ ds.min('time')
 
 ```
 %ingrid:
-(cice.nc)readCDF .cice 0.1 max 0.9 min
-``
+ds .sst 0 max 28 min
+```
 
 ```
 #python:
-ds.cice.clip(min=0.1,max=0.9) 
+ds.sst.clip(min=0,max=28) 
 ```
 
 </p> </details>
