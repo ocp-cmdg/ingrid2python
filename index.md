@@ -7,7 +7,7 @@ title: Ingrid2Python
 
 ## Simple Examples
 
-<details> <summary><a font-color='red'>Get Started: define a dataset</a></summary> <p>  
+<details> <summary><a href=''>Get Started: define a dataset</a></summary> <p>  
 
 [Ingrid on kage](http://kage.ldeo.columbia.edu:81/expert): 
 
@@ -27,6 +27,7 @@ os.system('wget ftp://ftp.cdc.noaa.gov/Datasets/COBE/sst.mon.mean.nc')
 ds = xr.open_dataset('sst.mon.mean.nc')
 ds
 ```
+
 </p> </details>
 
 <details> <summary>Selecting Data in Datasets </summary> <p>  
