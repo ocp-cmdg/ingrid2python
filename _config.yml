@@ -4,3 +4,4 @@ description: Ingrid to Python/Xarray commands
 logo: favicon.ico
 #markdown: CommonMarkGhPages
 markdown: kramdown
+encoding: UTF-8
