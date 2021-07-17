@@ -2,7 +2,7 @@
 
 ## Notation
 
-`ds` : an ingrid `stream`(or `Field`) or an xarray `dataset` (or `dataarray`)
+`ds` : an ingrid `stream` or an xarray `dataset`
 
 Try this out on [kage](http://kage.ldeo.columbia.edu:81/expert): 
 ```
