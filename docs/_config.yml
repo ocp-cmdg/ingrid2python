@@ -1,5 +1,5 @@
 theme: jekyll-theme-cayman
 title: ingrid2python
+description: common usage comparisons between ingrid and python
 logo: favicon.ico
-#markdown: CommonMarkGhPages
-markdown: kramdown
+markdown: CommonMarkGhPages
