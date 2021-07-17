@@ -7,5 +7,5 @@ title: Ingrid2Python
 {% capture details %}
 - simple example
 {% endcapture %}
-{% capture summary %}SUMMARY{% endcapture %}{% include details.html %}
+{% capture summary %}<a>SUMMARY</a>{% endcapture %}{% include details.html %}
 
