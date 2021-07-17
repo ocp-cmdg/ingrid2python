@@ -389,6 +389,32 @@ ds_nino34 = ds_anom.sortby('lat').sel(lon=slice(190,240),lat=slice(-5,5)).mean([
 ```
 </p> </details>
 
+<details> <summary><b>Cosines for Area Weighting </b></summary> <p>  
+
+```
+%ingrid:
+ds lat cosd
+```
+
+```
+#python:
+coslat = np.cos(np.deg2rad(ds.lat))
+```
+
+So we can use this to compute area weighted averages:
+
+```
+$ingrid:
+ds .sst {lat cosd}[lon lat]weighted-average
+```
+
+```
+#python:
+weights = np.cos(np.deg2rad(ds.lat))
+ds.sst.weighted(weights).mean(("lon", "lat"))
+```
+</p> </details>
+
 <details> <summary><b> </b></summary> <p>  
 
 ```
