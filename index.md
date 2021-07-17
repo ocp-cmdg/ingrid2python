@@ -32,7 +32,7 @@ N.B.:  A dataset/stream `ds` can contain multiple variables and grids. A dataarr
 
 </p> </details>
 
-<details> <summary><b style="color:#555;">Selecting Variables and Dimensions</b> </summary> <p>  
+<details> <summary><b>Selecting Variables and Dimensions</b> </summary> <p>  
 A dataset (stream) contains variables, grids, coordinates and metadata. These can be selected by similar methods for ingrid and python. Try selecting `.sst` and `.lon`
 
 ```
@@ -168,7 +168,7 @@ ds .sst [time] 1 SM121
 
 ```
 #python:
-ds.sst.pad(time=1,mode='symmetric').rolling(time=3, center=True).mean().dropna("time")
+ds.sst.pad(time=1,mode='symmetric').rolling(time=3, center=True).mean().dropna('time')
 ```
 </p> </details>
 
@@ -181,7 +181,7 @@ ds .sst [time] 1 SM121
 
 ```
 #python:
-ds.sst.pad(time=1, mode="wrap").rolling(time=3, center=True).mean().dropna("time")
+ds.sst.pad(time=1, mode='wrap').rolling(time=3, center=True).mean().dropna('time')
 ```
 </p> </details>
 
@@ -404,14 +404,52 @@ coslat = np.cos(np.deg2rad(ds.lat))
 So we can use this to compute area weighted averages:
 
 ```
-$ingrid:
+%ingrid:
 ds .sst {lat cosd}[lon lat]weighted-average
 ```
 
 ```
 #python:
 weights = np.cos(np.deg2rad(ds.lat))
-ds.sst.weighted(weights).mean(("lon", "lat"))
+ds.sst.weighted(weights).mean(('lon', 'lat'))
+```
+</p> </details>
+
+<details> <summary><b>EOFs/PCs </b></summary> <p>  
+Find the 3 leading EOFs and PCs. Note that ingrid and `eofs.xarray` use different scalings.
+
+```
+%ingrid:
+ds .sst {Y cosd}[lon lat][time]svd ev 1 3 RANGE
+```
+
+```
+#python:
+from eofs.xarray import Eof  # see [documentation](https://ajdawson.github.io/eofs/latest/api/eofs.xarray.html)
+ds_anom = ds.groupby('time.month') - ds.groupby('time.month').mean()
+solver = Eof(ds_anom.sst)
+pcs = solver.pcs(npcs=3)
+eofs = solver.eofsAsCorrelation(neofs=3)
+```
+</p> </details>
+
+<details> <summary><b>Partial Derivatives</b></summary> <p>  
+We prefer to use the `xgcm` package to properly keep track of the grid metrics, but here we use xarray's `differentiate` method since it is similar to ingrid's `partial` method.
+
+
+```
+%ingrid:
+ds .sst  a:
+    lat partial
+    lat :a: .lat REGRID
+    :a
+  110000. div
+```
+
+```
+#python:
+ds.sst.differentiate('lat')/110000.
+
 ```
 </p> </details>
 
