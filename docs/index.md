@@ -179,6 +179,62 @@ ds.pad(time=1, mode="wrap").rolling(time=3, center=True).mean().dropna("time")
 ```
 </p> </details>
 
+<details> <summary>Root Mean Squared</summary> <p>  
+
+```
+%ingrid:
+<ds> [time]rmsover
+```
+
+```
+#python:
+ds.std('time')
+```
+</p> </details>
+
+<details> <summary>Finding Minimum/Maximum</summary> <p>  
+
+```
+%ingrid:
+<ds> [X Y] maxover
+<ds> [time] minover
+```
+
+```
+#python:
+ds.max(['X','Y'])
+ds.min('time')
+```
+</p> </details>
+
+<details> <summary>Set minimum/maximum value</summary> <p>  
+
+```
+%ingrid:
+(cice.nc)readCDF .cice 0.1 max 0.9 min
+``
+
+```
+#python:
+ds.cice.clip(min=0.1,max=0.9) 
+```
+
+</p> </details>
+
+<details> <summary>Mask/Flag Data</summary> <p>  
+
+```
+%ingrid:
+
+```
+
+```
+#python:
+```
+</p> </details>
+
+</p> </details>
+
 <details> <summary></summary> <p>  
 
 ```
