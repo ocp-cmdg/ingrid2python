@@ -153,6 +153,32 @@ ds['trend'] = (ds.linear_fit[-1] - ds.linear_fit[0])
 ```
 </p> </details>
 
+<details> <summary>Smoothing Data - non-periodic</summary> <p>  
+
+```
+%ingrid:
+<ds> [time] 1 SM121
+```
+
+```
+#python:
+ds.pad(time=1,mode='symmetric').rolling(time=3, center=True).mean().dropna("time")
+```
+</p> </details>
+
+<details> <summary>Smoothing Data - periodic</summary> <p>  
+
+```
+%ingrid:
+<ds> [time] 1 SM121
+```
+
+```
+#python:
+ds.pad(time=1, mode="wrap").rolling(time=3, center=True).mean().dropna("time")
+```
+</p> </details>
+
 <details> <summary></summary> <p>  
 
 ```
