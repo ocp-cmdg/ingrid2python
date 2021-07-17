@@ -1,8 +1,3 @@
----
-layout: post
-title: Blogging Like a Hacker
----
-
 ## Ingrid to Python/Xarray commands
 
 ## Notation
