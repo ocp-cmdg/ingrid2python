@@ -6,10 +6,6 @@ title: Ingrid2Python
 `ds` : an ingrid `stream` or an xarray `dataset`
 
 ## Simple Examples
-{% capture details %}
-DETAILS
-{% endcapture %}
-{% capture summary %}SUMMARY{% endcapture %}{% include details.html %}
 
 <details> <summary>Get Started: define a dataset</summary> <p>  
 
