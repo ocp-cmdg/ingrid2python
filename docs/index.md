@@ -2,9 +2,9 @@
 
 ## Notation
 
->ds is an ingrid `stream`(or `Field`) or an xarray `dataset` (or `dataarray`)
+`ds` : an ingrid `stream`(or `Field`) or an xarray `dataset` (or `dataarray`)
 
-Try this out [kage](http://kage.ldeo.columbia.edu:81/expert): 
+Try this out on [kage](http://kage.ldeo.columbia.edu:81/expert): 
 ```
 %ingrid:
 /ds {(/DC/sst.mon.mean.nc) readCDF} def
@@ -55,12 +55,12 @@ ds.sst + 273.15
 
 ```
 %ingrid:
-ds time (Jan 1960) VALUE lat 20 VALUE
+ds .sst time (Jan 1960) VALUE lat 20 VALUE
 ```
 
 ```
 #python:
-ds.sel(time= '1960-01', lat=20, method='nearest')
+ds.sst.sel(time= '1960-01', lat=20, method='nearest').plot()
 ```
 </p> </details>
 
@@ -101,7 +101,7 @@ ds time 12 boxAverage
 
 ```
 #python:
-<ds>.coarsen(time=12,boundary='trim').mean()
+ds.coarsen(time=12,boundary='trim').mean()
 ```
 </p> </details>
 
@@ -109,12 +109,12 @@ ds time 12 boxAverage
 
 ```
 %ingrid:
-<ds> time 3 runningAverage
+ds time 3 runningAverage
 ```
 
 ```
 #python:
-<ds>.rolling(time=3, center=True).mean()
+ds.rolling(time=3, center=True).mean()
 ```
 </p> </details>
 
@@ -122,14 +122,13 @@ ds time 12 boxAverage
 
 ```
 %ingrid:
-(ssta.nc)readCDF .ssta [time]detrend-bfl
+ds .sst [time]detrend-bfl
 ```
 
 ```
 #python:
-ds = xr.open_dataset('ssta.nc')
-dfit = ds.ssta.polyfit('time', 1, skipna=True)
-ds.ssta - xr.polyval(coord=ds.time, coeffs=dfit.polyfit_coefficients)
+dfit = ds.sst.polyfit('time', 1, skipna=True)
+ds.sst - xr.polyval(coord=ds.time, coeffs=dfit.polyfit_coefficients)
 ```
 </p> </details>
 
@@ -137,13 +136,12 @@ ds.ssta - xr.polyval(coord=ds.time, coeffs=dfit.polyfit_coefficients)
 
 ```
 %ingrid:
-(ssta.nc)readCDF .ssta dup [time]detrend-bfl sub dup time last VALUE exch T first VALUE sub
+ds .ssta dup [time]detrend-bfl sub dup time last VALUE exch T first VALUE sub
 ```
 
 ```
 #python:
-ds = xr.open_dataset('ssta.nc') 
-dfit = ds.ssta.polyfit('time', 1, skipna=True)
+dfit = ds.sst.polyfit('time', 1, skipna=True)
 ds['linear_fit'] = xr.polyval(coord=ds.time, coeffs=dfit.polyfit_coefficients)
 ds['trend'] = (ds.linear_fit[-1] - ds.linear_fit[0])
 ```
@@ -153,7 +151,7 @@ ds['trend'] = (ds.linear_fit[-1] - ds.linear_fit[0])
 
 ```
 %ingrid:
-<ds> [time] 1 SM121
+ds [time] 1 SM121
 ```
 
 ```
@@ -166,7 +164,7 @@ ds.pad(time=1,mode='symmetric').rolling(time=3, center=True).mean().dropna("time
 
 ```
 %ingrid:
-<ds> [time] 1 SM121
+ds [time] 1 SM121
 ```
 
 ```
@@ -179,7 +177,7 @@ ds.pad(time=1, mode="wrap").rolling(time=3, center=True).mean().dropna("time")
 
 ```
 %ingrid:
-<ds> [time]rmsover
+ds [time]rmsover
 ```
 
 ```
@@ -192,8 +190,8 @@ ds.std('time')
 
 ```
 %ingrid:
-<ds> [lon lat] maxover
-<ds> [time] minover
+ds [lon lat] maxover
+ds [time] minover
 ```
 
 ```
