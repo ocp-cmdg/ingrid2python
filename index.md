@@ -334,6 +334,20 @@ xr.concat([ds1,ds2,ds3],dim='time')
 ```
 </p> </details>
 
+<details> <summary><b>Standardize a Time Series </b></summary> <p>  
+
+```
+%ingrid:
+ds .sst 
+[time]standardize
+```
+
+```
+#python:
+ds.sst/ds.sst.std('time')
+```
+</p> </details>
+
 <details> <summary><b>Correlation</b></summary> <p>  
 
 ```
