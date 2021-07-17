@@ -7,7 +7,7 @@ title: Ingrid2Python
 
 ## Simple Examples
 
-<details class=detail> <summary><b>  Get Started: define a dataset </b> </summary> <p>  
+<details class=detail> <summary><b>Get Started: define a dataset </b> </summary> <p>  
 
 [Ingrid on kage](http://kage.ldeo.columbia.edu:81/expert): 
 
@@ -44,7 +44,7 @@ ds.sst
 ```
 </p> </details>
 
-<details> <summary>Addition/Subtraction/Multiplication </summary> <p>  
+<details> <summary><b>Addition/Subtraction/Multiplication</b> </summary> <p>  
 In ingrid, compatible objects (streams, numbers) can be added together element by element
 
 ```
@@ -60,7 +60,7 @@ ds.sst + 273.15
 ```
 </p> </details>
 
-<details> <summary>Data Selection by Grid value </summary> <p>  
+<details> <summary><b>Data Selection by Grid value</b> </summary> <p>  
 
 ```
 %ingrid:
@@ -73,7 +73,7 @@ ds.sst.sel(time= '1960-01', lat=20, method='nearest').plot()
 ```
 </p> </details>
 
-<details> <summary>Data Selection by Grid Range </summary> <p>  
+<details> <summary><b>Data Selection by Grid Range</b> </summary> <p>  
 
 ```
 %ingrid:
@@ -86,7 +86,7 @@ ds.sel(time=slice('1982-01','1995-12'),lon=slice(20,60))
 ```
 </p> </details>
 
-<details> <summary>Averaging over a Dimension </summary> <p>  
+<details> <summary><b>Averaging over a Dimension</b> </summary> <p>  
 
 ```
 %ingrid:
@@ -101,7 +101,7 @@ ds.mean(['lat','lon'])
 ```
 </p> </details>
 
-<details> <summary>Grid Coarsening </summary> <p>  
+<details> <summary><b>Grid Coarsening</b> </summary> <p>  
 
 ```
 %ingrid:
@@ -114,7 +114,7 @@ ds.coarsen(time=12,boundary='trim').mean()
 ```
 </p> </details>
 
-<details> <summary>Running Average </summary> <p>  
+<details> <summary><b>Running Average</b> </summary> <p>  
 
 ```
 %ingrid:
@@ -127,7 +127,7 @@ ds.rolling(time=3, center=True).mean()
 ```
 </p> </details>
 
-<details> <summary>Detrending</summary> <p>  
+<details> <summary><b>Detrending</b></summary> <p>  
 
 ```
 %ingrid:
@@ -141,7 +141,7 @@ ds.sst - xr.polyval(coord=ds.time, coeffs=dfit.polyfit_coefficients)
 ```
 </p> </details>
 
-<details> <summary>Linear Trend</summary> <p>  
+<details> <summary><b>Linear Trend</b></summary> <p>  
 
 ```
 %ingrid:
@@ -156,7 +156,7 @@ ds['trend'] = (ds.linear_fit[-1] - ds.linear_fit[0])
 ```
 </p> </details>
 
-<details> <summary>Smoothing Data - non-periodic</summary> <p>  
+<details> <summary><b>Smoothing Data - non-periodic</b></summary> <p>  
 
 ```
 %ingrid:
@@ -169,7 +169,7 @@ ds.pad(time=1,mode='symmetric').rolling(time=3, center=True).mean().dropna("time
 ```
 </p> </details>
 
-<details> <summary>Smoothing Data - periodic</summary> <p>  
+<details> <summary><b>Smoothing Data - periodic</b></summary> <p>  
 
 ```
 %ingrid:
@@ -182,7 +182,7 @@ ds.pad(time=1, mode="wrap").rolling(time=3, center=True).mean().dropna("time")
 ```
 </p> </details>
 
-<details> <summary>Root Mean Squared</summary> <p>  
+<details> <summary><b>Root Mean Squared</b></summary> <p>  
 
 ```
 %ingrid:
@@ -195,7 +195,7 @@ ds.std('time')
 ```
 </p> </details>
 
-<details> <summary>Finding Minimum/Maximum</summary> <p>  
+<details> <summary><b>Finding Minimum/Maximum</b></summary> <p>  
 
 ```
 %ingrid:
@@ -210,7 +210,7 @@ ds.min('time')
 ```
 </p> </details>
 
-<details> <summary>Set Minimum/Maximum Value</summary> <p>  
+<details> <summary><b>Set Minimum/Maximum Value</b></summary> <p>  
 
 ```
 %ingrid:
@@ -224,7 +224,7 @@ ds.sst.clip(min=0,max=28)
 
 </p> </details>
 
-<details> <summary>Mask/Flag Data</summary> <p>  
+<details> <summary><b>Mask/Flag Data</b></summary> <p>  
 
 ```
 %ingrid:
@@ -238,7 +238,7 @@ ds.sst.clip(min=0,max=28)
 
 </p> </details>
 
-<details> <summary></summary> <p>  
+<details> <summary><b></b></summary> <p>  
 
 ```
 %ingrid:
