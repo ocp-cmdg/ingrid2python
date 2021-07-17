@@ -226,16 +226,40 @@ ds.sst.clip(min=0,max=28)
 
 <details> <summary><b>Mask/Flag Data</b></summary> <p>  
 
+- Masking:
+
 ```
 %ingrid:
+ds .sst 10.0 maskgt
+```
 
+```
+#python:
+ds.sst.where(ds.sst<10)
+```
+
+- Flagging:
+
+```
+%ingrid:
+ds .sst 10.0 flaglt
+```
+
+```
+#python:
+ds.sst.where(ds.sst>10,1.0).where(ds.sst<=10,0.0)
+```
+</p> </details>
+
+<details> <summary><b></b></summary> <p>  
+
+```
+%ingrid:
 ```
 
 ```
 #python:
 ```
-</p> </details>
-
 </p> </details>
 
 <details> <summary><b></b></summary> <p>  
