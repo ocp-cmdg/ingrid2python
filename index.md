@@ -7,7 +7,7 @@ title: Ingrid2Python
 
 ## Simple Examples
 
-<details> <summary> ▶ Get Started: define a dataset </summary> <p>  
+<details> <summary> - Get Started: define a dataset </summary> <p>  
 
 [Ingrid on kage](http://kage.ldeo.columbia.edu:81/expert): 
 
@@ -30,7 +30,7 @@ ds
 
 </p> </details>
 
-<details> <summary><b style="color:DodgerBlue;">Selecting Data in Datasets</b> </summary> <p>  
+<details> <summary><b style="color:#555;">Selecting Data in Datasets</b> </summary> <p>  
 A dataset (stream) contains variables, grids, coordinates and metadata. These can be selected by similar methods for ingrid and python. Try selecting `.sst` and `.lon`
 
 ```
