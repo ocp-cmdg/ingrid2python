@@ -5,6 +5,7 @@ title: Ingrid2Python
 ## Simple Examples
 
 {% capture details %}
+
 [Ingrid on kage](http://kage.ldeo.columbia.edu:81/expert):
 
 ```
