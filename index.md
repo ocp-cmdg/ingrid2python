@@ -30,7 +30,7 @@ ds
 
 </p> </details>
 
-<details> <summary><b style="color:#555;">Selecting Data in Datasets</b> </summary> <p>  
+<details> <summary><b style="color:#555;">Selecting Variables and Dimensions</b> </summary> <p>  
 A dataset (stream) contains variables, grids, coordinates and metadata. These can be selected by similar methods for ingrid and python. Try selecting `.sst` and `.lon`
 
 ```
@@ -251,25 +251,50 @@ ds.sst.where(ds.sst>10,1.0).where(ds.sst<=10,0.0)
 ```
 </p> </details>
 
-<details> <summary><b></b></summary> <p>  
+<details> <summary><b>Split-Apply-Combine</b></summary> <p>  
 
 ```
 %ingrid:
+ds .sst time 12 splitstreamgrid  % month is now `time` and year is `time2`
+time (Dec) (Jan) (Feb) (Mar) (Apr) VALUES [time]average   % select months and then average over months
+% returns an object for each year
 ```
 
 ```
 #python:
+def is_amj(month):
+    return (month >= 12) | (month <= 4)
+ds.sst.sel(time=is_amj(ds.sst['time.month'])).groupby('time.year').mean()
 ```
 </p> </details>
 
-<details> <summary><b></b></summary> <p>  
+<details> <summary><b>Monthly Climatology</b></summary> <p>  
 
 ```
 %ingrid:
+% time must be called `in month` and units must be in `monthtime`
+ds .sst time /T renameGRID T (Jan 1950) (Dec 2019) RANGE
+yearly-climatology
 ```
 
 ```
 #python:
+ds.sst.groupby('time.month').mean()
+```
+</p> </details>
+
+<details> <summary><b>Monthly Anomalies</b></summary> <p>  
+
+```
+%ingrid:
+% time must be called `in month` and units must be in `monthtime`
+ds .sst time /T renameGRID T (Jan 1950) (Dec 2019) RANGE
+yearly-anomalies
+```
+
+```
+#python:
+ds.sst.groupby('time.month') - ds.sst.groupby('time.month').mean()
 ```
 </p> </details>
 
