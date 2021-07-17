@@ -56,7 +56,7 @@ ds.sst + 273.15
 ```
 </p> </details>
 
-<details> <summary>Data Selection by grid value </summary> <p>  
+<details> <summary>Data Selection by Grid value </summary> <p>  
 
 ```
 %ingrid:
@@ -69,7 +69,7 @@ ds.sst.sel(time= '1960-01', lat=20, method='nearest').plot()
 ```
 </p> </details>
 
-<details> <summary>Data Selection by grid range </summary> <p>  
+<details> <summary>Data Selection by Grid Range </summary> <p>  
 
 ```
 %ingrid:
@@ -82,7 +82,7 @@ ds.sel(time=slice('1982-01','1995-12'),lon=slice(20,60))
 ```
 </p> </details>
 
-<details> <summary>Averaging over a dimension </summary> <p>  
+<details> <summary>Averaging over a Dimension </summary> <p>  
 
 ```
 %ingrid:
@@ -97,7 +97,7 @@ ds.mean(['lat','lon'])
 ```
 </p> </details>
 
-<details> <summary>Grid coarsening </summary> <p>  
+<details> <summary>Grid Coarsening </summary> <p>  
 
 ```
 %ingrid:
@@ -137,7 +137,7 @@ ds.sst - xr.polyval(coord=ds.time, coeffs=dfit.polyfit_coefficients)
 ```
 </p> </details>
 
-<details> <summary> Find linear trend</summary> <p>  
+<details> <summary>Linear Trend</summary> <p>  
 
 ```
 %ingrid:
@@ -206,7 +206,7 @@ ds.min('time')
 ```
 </p> </details>
 
-<details> <summary>Set minimum/maximum value</summary> <p>  
+<details> <summary>Set Minimum/Maximum Value</summary> <p>  
 
 ```
 %ingrid:
