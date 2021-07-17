@@ -1,5 +1,3 @@
-## Ingrid to Python/Xarray commands
-
 ## Notation
 
 `ds` : an ingrid `stream` or an xarray `dataset`
