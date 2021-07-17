@@ -7,7 +7,7 @@ title: Ingrid2Python
 
 ## Simple Examples
 
-<details> <summary><a href=''>Get Started: define a dataset</a></summary> <p>  
+<details> <summary>Get Started: define a dataset</summary> <p>  
 
 [Ingrid on kage](http://kage.ldeo.columbia.edu:81/expert): 
 
