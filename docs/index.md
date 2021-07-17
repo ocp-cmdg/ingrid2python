@@ -4,6 +4,7 @@
 
 `ds` : an ingrid `stream` or an xarray `dataset`
 
+## Simple Examples
 <details> <summary>Get Started: define a dataset</summary> <p>  
 
 [Ingrid on kage](http://kage.ldeo.columbia.edu:81/expert): 
