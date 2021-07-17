@@ -327,11 +327,11 @@ ds .sst time /T renameGRID
 
 ```
 #python:
-```
 ds1 = ds.sst.sel(time=slice('1949-01','1958-12'))
 ds2 = ds.sst.sel(time=slice('1959-01','1978-12'))
 ds3 = ds.sst.sel(time=slice('1979-01','2001-12'))
 xr.concat([ds1,ds2,ds3],dim='time')
+```
 </p> </details>
 
 <details> <summary><b>Correlation</b></summary> <p>  
