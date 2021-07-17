@@ -453,14 +453,33 @@ ds.sst.differentiate('lat')/110000.
 ```
 </p> </details>
 
-<details> <summary><b> </b></summary> <p>  
+<details> <summary><b>Integrals </b></summary> <p>  
 
 ```
 %ingrid:
+ds .sst   a:
+    lon integral
+    lon :a: .lon REGRID
+    :a 
 ```
 
 ```
 #python:
+ds.sst.cumsum('lon')
+```
+</p> </details>
+
+<details> <summary><b>Definite Integrals </b></summary> <p>  
+
+```
+%ingrid:
+ds .sst [lat]average
+lon 10 40 definite-integral
+```
+
+```
+#python:
+ds.sst.mean('lat').sel(lon=slice(10,40)).integrate('lon')
 ```
 </p> </details>
 
