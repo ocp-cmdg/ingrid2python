@@ -1,3 +1,6 @@
+---
+title: Ingrid2Python
+---
 ## Notation
 
 `ds` : an ingrid `stream` or an xarray `dataset`
