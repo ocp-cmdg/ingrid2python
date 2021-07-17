@@ -2,4 +2,5 @@ theme: jekyll-theme-cayman
 title: ingrid2python
 description: Ingrid to Python/Xarray commands
 logo: favicon.ico
-markdown: CommonMarkGhPages
+#markdown: CommonMarkGhPages
+markdown: kramdown
