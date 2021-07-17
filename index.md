@@ -28,6 +28,8 @@ ds = xr.open_dataset('sst.mon.mean.nc')
 ds
 ```
 
+N.B.:  A dataset/stream `ds` can contain multiple variables and grids. A dataarray/field, `da` (for example, ingrid syntax: `ds .sst` and python syntax `ds.sst`) contains a single variable. Most of the commands used in this page can be applied to both datasets and dataarrays. If commands are applied to a dataset, it is applied to all variables in that dataset.
+
 </p> </details>
 
 <details> <summary><b style="color:#555;">Selecting Variables and Dimensions</b> </summary> <p>  
@@ -98,6 +100,7 @@ ds [lat lon] average
 #python:
 ds.mean('time')
 ds.mean(['lat','lon'])
+
 ```
 </p> </details>
 
@@ -118,12 +121,12 @@ ds.coarsen(time=12,boundary='trim').mean()
 
 ```
 %ingrid:
-ds time 3 runningAverage
+ds .sst time 3 runningAverage
 ```
 
 ```
 #python:
-ds.rolling(time=3, center=True).mean()
+ds.sst.rolling(time=3, center=True).mean()
 ```
 </p> </details>
 
@@ -145,7 +148,7 @@ ds.sst - xr.polyval(coord=ds.time, coeffs=dfit.polyfit_coefficients)
 
 ```
 %ingrid:
-ds .ssta dup [time]detrend-bfl sub dup time last VALUE exch T first VALUE sub
+ds .sst dup [time]detrend-bfl sub dup time last VALUE exch T first VALUE sub
 ```
 
 ```
@@ -160,12 +163,12 @@ ds['trend'] = (ds.linear_fit[-1] - ds.linear_fit[0])
 
 ```
 %ingrid:
-ds [time] 1 SM121
+ds .sst [time] 1 SM121
 ```
 
 ```
 #python:
-ds.pad(time=1,mode='symmetric').rolling(time=3, center=True).mean().dropna("time")
+ds.sst.pad(time=1,mode='symmetric').rolling(time=3, center=True).mean().dropna("time")
 ```
 </p> </details>
 
@@ -173,12 +176,12 @@ ds.pad(time=1,mode='symmetric').rolling(time=3, center=True).mean().dropna("time
 
 ```
 %ingrid:
-ds [time] 1 SM121
+ds .sst [time] 1 SM121
 ```
 
 ```
 #python:
-ds.pad(time=1, mode="wrap").rolling(time=3, center=True).mean().dropna("time")
+ds.sst.pad(time=1, mode="wrap").rolling(time=3, center=True).mean().dropna("time")
 ```
 </p> </details>
 
@@ -186,12 +189,16 @@ ds.pad(time=1, mode="wrap").rolling(time=3, center=True).mean().dropna("time")
 
 ```
 %ingrid:
-ds [time]rmsover
+ds .sst [time]rmsover
+%or, removing the mean first:
+ds .sst [time]rmsaover
 ```
 
 ```
 #python:
-ds.std('time')
+ds.sst.std('time')
+# or, removing the mean first:
+(ds - ds.mean('time')).sst.std('time')
 ```
 </p> </details>
 
@@ -199,14 +206,14 @@ ds.std('time')
 
 ```
 %ingrid:
-ds [lon lat] maxover
-ds [time] minover
+ds .sst [lon lat] maxover
+ds .sst [time] minover
 ```
 
 ```
 #python:
-ds.max(['lon','lat'])
-ds.min('time')
+ds.sst.max(['lon','lat'])
+ds.sst.min('time')
 ```
 </p> </details>
 
@@ -251,6 +258,41 @@ ds.sst.where(ds.sst>10,1.0).where(ds.sst<=10,0.0)
 ```
 </p> </details>
 
+<details> <summary><b>Monthly Climatology</b></summary> <p>  
+
+```
+%ingrid:
+% time must be called `T` and time units must be in `monthtime`
+ds .sst 
+time /T renameGRID 
+T (Jan 1950) (Dec 2019) RANGE
+yearly-climatology
+```
+
+```
+#python:
+ds.sst.sel(time=slice('1950-01','2019-12').groupby('time.month').mean()
+```
+</p> </details>
+
+<details> <summary><b>Monthly Anomalies</b></summary> <p>  
+
+```
+%ingrid:
+% time must be called `T` and units must be in `monthtime`
+ds .sst 
+time /T renameGRID 
+T (Jan 1950) (Dec 2019) RANGE
+yearly-anomalies
+```
+
+```
+#python:
+ds.sst.groupby('time.month') - ds.sst.groupby('time.month').mean()
+```
+</p> </details>
+
+
 <details> <summary><b>Split-Apply-Combine</b></summary> <p>  
 
 ```
@@ -268,33 +310,79 @@ ds.sst.sel(time=is_amj(ds.sst['time.month'])).groupby('time.year').mean()
 ```
 </p> </details>
 
-<details> <summary><b>Monthly Climatology</b></summary> <p>  
+<details> <summary><b>Combining Time Segments</b></summary> <p>  
 
 ```
 %ingrid:
-% time must be called `in month` and units must be in `monthtime`
-ds .sst time /T renameGRID T (Jan 1950) (Dec 2019) RANGE
-yearly-climatology
+ds .sst time /T renameGRID
+  T (Jan 1949) (Dec 1958) RANGE
+  yearly-anomalies
+ds .sst time /T renameGRID
+   T (Jan 1959) (Dec 1978) RANGE
+   yearly-anomalies appendstream
+ds .sst time /T renameGRID
+   T (Jan 1979) (Dec 2001) RANGE
+   yearly-anomalies appendstream
 ```
 
 ```
 #python:
-ds.sst.groupby('time.month').mean()
+```
+ds1 = ds.sst.sel(time=slice('1949-01','1958-12'))
+ds2 = ds.sst.sel(time=slice('1959-01','1978-12'))
+ds3 = ds.sst.sel(time=slice('1979-01','2001-12'))
+xr.concat([ds1,ds2,ds3],dim='time')
+</p> </details>
+
+<details> <summary><b>Correlation</b></summary> <p>  
+
+```
+%ingrid:
+ds .sst time /T renameGRID
+  T (Jan 1949) (Dec 2001) RANGE
+  yearly-anomalies
+dup lon 190 240 RANGE lat -5 5 RANGE [lon lat]average
+   [T]correlate
+```
+
+```
+#python:
+dsg = ds.sst.sel(time=slice('1949-01','2001-12')).groupby('time.month')
+ds_anom = dsg - dsg.mean()
+ds_nino34 = ds_anom.sortby('lat').sel(lon=slice(190,240),lat=slice(-5,5)).mean(['lon','lat'])
+xr.corr(ds_anom,ds_nino34,'time')
 ```
 </p> </details>
 
-<details> <summary><b>Monthly Anomalies</b></summary> <p>  
+<details> <summary><b>Regression</b></summary> <p>  
 
 ```
 %ingrid:
-% time must be called `in month` and units must be in `monthtime`
-ds .sst time /T renameGRID T (Jan 1950) (Dec 2019) RANGE
-yearly-anomalies
+ds .sst time /T renameGRID
+  T (Jan 1949) (Dec 2001) RANGE
+  yearly-anomalies
+dup lon 190 240 RANGE lat -5 5 RANGE [lon lat]average
+   [T]standardize
+mul [T]average
 ```
 
 ```
 #python:
-ds.sst.groupby('time.month') - ds.sst.groupby('time.month').mean()
+dsg = ds.sst.sel(time=slice('1949-01','2001-12')).groupby('time.month')
+ds_anom = (dsg - dsg.mean()).drop('month')
+ds_nino34 = ds_anom.sortby('lat').sel(lon=slice(190,240),lat=slice(-5,5)).mean(['lon','lat'])
+(ds_anom * ds_nino34/ds_nino34.std('time')).mean('time')
+```
+</p> </details>
+
+<details> <summary><b> </b></summary> <p>  
+
+```
+%ingrid:
+```
+
+```
+#python:
 ```
 </p> </details>
 
