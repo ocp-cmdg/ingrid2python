@@ -5,3 +5,7 @@ logo: favicon.ico
 markdown: CommonMarkGhPages
 #markdown: kramdown
 encoding: UTF-8
+
+commonmark:
+  options: ["SMART", "FOOTNOTES"]
+  extensions: ["strikethrough", "autolink", "table", "tagfilter"]
