@@ -1,4 +1,5 @@
 theme: jekyll-theme-cayman
-title: ingrid2python CheatSheet
+title: ingrid2python
 logo: favicon.ico
-markdown: CommonMarkGhPages
+#markdown: CommonMarkGhPages
+markdown: kramdown
