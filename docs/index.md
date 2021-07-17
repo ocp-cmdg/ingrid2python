@@ -1,12 +1,17 @@
+---
+layout: post
+title: Blogging Like a Hacker
+---
+
 ## Ingrid to Python/Xarray commands
 
 ## Notation
 
 `ds` : an ingrid `stream` or an xarray `dataset`
 
-<details> <summary>Opening a Dataset</summary> <p>  
+<details> <summary>Get Started: define a dataset</summary> <p>  
 
-Try this out on [kage](http://kage.ldeo.columbia.edu:81/expert): 
+[Ingrid on kage](http://kage.ldeo.columbia.edu:81/expert): 
 
 ```
 %ingrid:
@@ -14,7 +19,7 @@ Try this out on [kage](http://kage.ldeo.columbia.edu:81/expert):
 ds
 ```
 
-Try this out in a Jupyter Notebook: (type "<shift><enter>" to see the results)
+[Python in Jupyter Notebook]()
 
 ```
 #python:
