@@ -15,6 +15,7 @@ N.B., We replace the time by an 'ingrid-friendly' (but not CF-compliant) time.
 
 ```
 %ingrid:
+
 /ds {SOURCES .LOCAL .sst.mon.mean.nc
 time /time (months since 1891-01-01) ordered 0.5 1 1565.5 NewEvenGRID replaceGRID
 } def
@@ -27,6 +28,7 @@ N.B., You can download the [latest COBE SSTs](ftp://ftp.cdc.noaa.gov/Datasets/CO
 
 ```
 #python:
+
 import xarray as xr
 url = 'http://kage.ldeo.columbia.edu:81/SOURCES/.LOCAL/.sst.mon.mean.nc/.sst/dods'
 ds = xr.open_dataset(url)
