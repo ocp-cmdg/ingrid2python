@@ -10,25 +10,26 @@ title: Ingrid2Python
 <details> <summary><b>Getting Started: define a dataset </b></summary> <p>  
 
 [Ingrid on kage](http://kage.ldeo.columbia.edu:81/expert): 
+N.B., We replace the time by an 'ingrid-friendly' (but not CF-compliant) time.
 
 ```
 %ingrid:
-/ds {(/DC/sst.mon.mean.nc) readCDF} def
+/ds {SOURCES .LOCAL .sst.mon.mean.nc
+time /time (months since 1891-01-01) ordered 0.5 1 1565.5 NewEvenGRID replaceGRID
+} def
 ds
 ```
 
 [Python in Jupyter Notebook]()
+N.B., You can download the [latest COBE SSTs](ftp://ftp.cdc.noaa.gov/Datasets/COBE/sst.mon.mean.nc')
 
 ```
 #python:
 import xarray as xr
-import os
-os.system('wget ftp://ftp.cdc.noaa.gov/Datasets/COBE/sst.mon.mean.nc')
-
-ds = xr.open_dataset('sst.mon.mean.nc')
+url = 'http://kage.ldeo.columbia.edu:81/SOURCES/.LOCAL/.sst.mon.mean.nc/.sst/dods'
+ds = xr.open_dataset(url)
 ds
 ```
-
 N.B.:  A dataset/stream `ds` can contain multiple variables and grids. A dataarray/field, `da` (for example, ingrid syntax: `ds .sst` and python syntax `ds.sst`) contains a single variable. Most of the commands used in this page can be applied to both datasets and dataarrays. If commands are applied to a dataset, it is applied to all variables in that dataset.
 
 </p> </details>
