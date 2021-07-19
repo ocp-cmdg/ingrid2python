@@ -2,4 +2,4 @@
 
 A collection of simple ingrid to python translations to help us transition to python
 
-Webpage [here](https://ocp-seager.github.io/ingrid2python/)
+Webpage [here](https://ocp-cmdg.github.io/ingrid2python/)
