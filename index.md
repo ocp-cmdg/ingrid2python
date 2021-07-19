@@ -268,10 +268,10 @@ ds.sst.where(ds.sst>10,1.0).where(ds.sst<=10,0.0)
 
 ```
 %ingrid:
-% time must be called `T` and time units must be in `monthtime`
-ds .sst time /T renameGRID 
-T (Jan 1950) (Dec 2019) RANGE
-yearly-climatology
+% time must be called `T`
+ds .sst 
+time (Jan 1950) (Dec 2019) RANGE
+time /T renameGRID yearly-climatology
 ```
 
 ```
@@ -284,10 +284,9 @@ ds.sst.sel(time=slice('1950-01','2019-12')).groupby('time.month').mean()
 
 ```
 %ingrid:
-% time must be called `T` and units must be in `monthtime`
-ds .sst time /T renameGRID 
-T (Jan 1950) (Dec 2019) RANGE
-yearly-anomalies
+ds .sst 
+time (Jan 1950) (Dec 2019) RANGE
+time /T renameGRID yearly-anomalies
 ```
 
 ```
@@ -308,8 +307,10 @@ time (Dec) (Jan) (Feb) (Mar) (Apr) VALUES [time]average   % select months and th
 
 ```
 #python:
-def is_amj(month):
+
+def is_amj(month):                     # define a function to select the desired months
     return (month >= 12) | (month <= 4)
+
 ds.sst.sel(time=is_amj(ds.sst['time.month'])).groupby('time.year').mean()
 ```
 </p> </details>
