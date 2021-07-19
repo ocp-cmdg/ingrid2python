@@ -10,6 +10,7 @@ title: Ingrid2Python
 <details> <summary><b>Getting Started: define a dataset </b></summary> <p>  
 
 [Ingrid on kage](http://kage.ldeo.columbia.edu:81/expert): 
+
 N.B., We replace the time by an 'ingrid-friendly' (but not CF-compliant) time.
 
 ```
@@ -21,6 +22,7 @@ ds
 ```
 
 [Python in Jupyter Notebook]()
+
 N.B., You can download the [latest COBE SSTs](ftp://ftp.cdc.noaa.gov/Datasets/COBE/sst.mon.mean.nc')
 
 ```
