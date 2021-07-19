@@ -302,7 +302,8 @@ ds.sst.groupby('time.month') - ds.sst.groupby('time.month').mean()
 %ingrid:
 
 ds .sst time 12 splitstreamgrid 
-time (Dec) (Jan) (Feb) (Mar) (Apr) VALUES [time]average   
+time (Dec) (Jan) (Feb) (Mar) (Apr) VALUES 
+[time]average   
 ```
 
 ```
