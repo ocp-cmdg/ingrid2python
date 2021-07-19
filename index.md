@@ -7,7 +7,7 @@ title: Ingrid2Python
 
 ## Simple Examples
 
-<details class=detail> <summary><b>Get Started: define a dataset </b> </summary> <p>  
+<details> <summary><b>Getting Started: define a dataset </b></summary> <p>  
 
 [Ingrid on kage](http://kage.ldeo.columbia.edu:81/expert): 
 
@@ -24,6 +24,7 @@ ds
 import xarray as xr
 import os
 os.system('wget ftp://ftp.cdc.noaa.gov/Datasets/COBE/sst.mon.mean.nc')
+
 ds = xr.open_dataset('sst.mon.mean.nc')
 ds
 ```
@@ -271,7 +272,7 @@ yearly-climatology
 
 ```
 #python:
-ds.sst.sel(time=slice('1950-01','2019-12').groupby('time.month').mean()
+ds.sst.sel(time=slice('1950-01','2019-12')).groupby('time.month').mean()
 ```
 </p> </details>
 
