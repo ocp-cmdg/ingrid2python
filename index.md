@@ -196,7 +196,7 @@ ds.sst.pad(time=1, mode='wrap').rolling(time=3, center=True).mean().dropna('time
 ```
 %ingrid:
 ds .sst [time]rmsover
-%or, removing the mean first:
+% or, removing the mean first:
 ds .sst [time]rmsaover
 ```
 
