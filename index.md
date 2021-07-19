@@ -291,7 +291,8 @@ time /T renameGRID yearly-anomalies
 
 ```
 #python:
-ds.sst.groupby('time.month') - ds.sst.groupby('time.month').mean()
+dss = ds.sel(time=slice('1950-01','2019-12'))
+dss.sst.groupby('time.month') - dss.sst.groupby('time.month').mean()
 ```
 </p> </details>
 
