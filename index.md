@@ -24,7 +24,7 @@ ds
 
 [Python in Jupyter Notebook]()
 
-N.B., You can download the [latest COBE SSTs](ftp://ftp.cdc.noaa.gov/Datasets/COBE/sst.mon.mean.nc')
+N.B., You could download the [latest COBE SSTs](ftp://ftp.cdc.noaa.gov/Datasets/COBE/sst.mon.mean.nc') and then open it directly: `xr.open_dataset('sst.mon.mean.nc')`
 
 ```
 #python:
