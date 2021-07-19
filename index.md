@@ -269,8 +269,7 @@ ds.sst.where(ds.sst>10,1.0).where(ds.sst<=10,0.0)
 ```
 %ingrid:
 % time must be called `T` and time units must be in `monthtime`
-ds .sst 
-time /T renameGRID 
+ds .sst time /T renameGRID 
 T (Jan 1950) (Dec 2019) RANGE
 yearly-climatology
 ```
@@ -286,8 +285,7 @@ ds.sst.sel(time=slice('1950-01','2019-12')).groupby('time.month').mean()
 ```
 %ingrid:
 % time must be called `T` and units must be in `monthtime`
-ds .sst 
-time /T renameGRID 
+ds .sst time /T renameGRID 
 T (Jan 1950) (Dec 2019) RANGE
 yearly-anomalies
 ```
