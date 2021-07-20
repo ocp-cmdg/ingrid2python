@@ -29,8 +29,8 @@ eofs.plot(x='lon',y='lat',col='mode',col_wrap=3,add_colorbar=0)
 pcs.plot(x='time',col='mode',col_wrap=3);
 ```
 <p> 
-<p align="center"><img src="/assets/eofs.png"></p>
-<p align="center"><img src="/assets/pcs.png"></p>
+<p align="center"><img src="../assets/eofs.png"></p>
+<p align="center"><img src="../assets/pcs.png"></p>
 </p> 
     
 </p> </details>
