@@ -22,6 +22,35 @@ eofs = solver.eofsAsCorrelation(neofs=3)
 ```
 </p> </details>
 
+<details> <summary><b>Finding Quantiles</b></summary> <p>  
+
+```
+$ingrid
+SOURCES .LOCAL .sst.mon.mean.nc .sst [time]average
+lat -80 80 RANGEEDGES
+[lon]0.05 0.95 0 replacebypercentile
+dup
+percentile 0.95 VALUE
+exch
+percentile 0.05 VALUE
+```
+
+```
+#python
+import xarray as xr
+from matplotlib import pyplot as plt
+
+ds = xr.open_dataset('http://kage.ldeo.columbia.edu:81/SOURCES/.LOCAL/.sst.mon.mean.nc/.sst/dods')
+dss = ds.mean('time').sel(lat=slice(80,-80))
+quants = dss.sst.quantile( [0.05, 0.95], dim="lon")
+quants.sel(quantile=0.95).plot(label='95th percentile')
+quants.sel(quantile=0.05).plot(label='5th percentile')
+plt.title('95th and 5th percentiles of SST by latitude')
+plt.legend();
+```
+</p> </details>
+
+
 <details> <summary><b>Find the depth of the 20 degree isotherm</b></summary> <p>  
 
 ```
