@@ -25,8 +25,9 @@ eofs = solver.eofsAsCorrelation(neofs=3)
 eofs.plot(x='lon',y='lat',col='mode',col_wrap=3,add_colorbar=0)
 pcs.plot(x='time',col='mode',col_wrap=3);
 ```
-  <details> <summary><b>Plot</b></summary> <p> 
-    <img src="/ingrid2python/assets/eofs.png">
+  <details> - <summary><b>- Plot</b></summary> <p> 
+    <img src="/ingrid2python/assets/eofs.png" class="inline"\>
+    <img src="/ingrid2python/assets/pcs.png" class="inline"\>
   </p> </details> 
     
 </p> </details>
