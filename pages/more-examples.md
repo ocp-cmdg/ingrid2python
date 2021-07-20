@@ -25,7 +25,7 @@ eofs = solver.eofsAsCorrelation(neofs=3)
 <details> <summary><b>Find the depth of the 20 degree isotherm</b></summary> <p>  
 
 ```
-$ingrid on kage
+$ingrid
 /ds {SOURCES .LOCAL .ORAs5_thetao-clim.nc deptht 0 500 RANGE lat -30 30 RANGE [time]average} def
 
 ds .thetao
