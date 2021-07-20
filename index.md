@@ -5,7 +5,7 @@ title: Ingrid2Python
 
 `ds` : an ingrid `stream` or an xarray `dataset`
 
-## Simple Examples
+## Basic Examples
 
 <details> <summary><b>Getting Started: define a dataset </b></summary> <p>  
 
