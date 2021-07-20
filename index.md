@@ -491,3 +491,22 @@ ds.sst.mean('lat').sel(lon=slice(10,40)).integrate('lon')
 ```
 </p> </details>
 
+<details> <summary><b>Convert daily data to monthly </b></summary> <p>  
+
+```
+%ingrid:
+SOURCES .LOCAL .tas_day_CESM2_amip_20100101-20150101.nc .tas
+time /T renameGRID
+monthlyAverage
+```
+
+```
+#python:
+import xarray as xr
+
+url='http://kage.ldeo.columbia.edu:81/expert/SOURCES/.LOCAL/.tas_day_CESM2_amip_20100101-20150101.nc/.tas/dods'
+tas=xr.open_dataset(url,decode_times=True)
+tas = tas.sel(time = slice('2010-01-01','2014-12-31'))
+tas_monthly = tas.resample(time='1M').mean()
+```
+</p> </details>
