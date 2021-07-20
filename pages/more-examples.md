@@ -51,7 +51,7 @@ plt.legend();
 </p> </details>
 
 
-<details> <summary><b>Find the depth of the 20 degree isotherm</b></summary> <p>  
+<details> <summary><b>Depth of the 20 Degree Isotherm</b></summary> <p>  
 
 ```
 $ingrid
