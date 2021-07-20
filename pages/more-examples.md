@@ -26,7 +26,7 @@ eofs.plot(x='lon',y='lat',col='mode',col_wrap=3,add_colorbar=0)
 pcs.plot(x='time',col='mode',col_wrap=3);
 ```
   <details> <summary><b>Plot</b></summary> <p> 
-    <img src="/assets/eofs.png" width="400">
+    <img src="/ingrid2python/assets/eofs.png">
   </p> </details> 
     
 </p> </details>
