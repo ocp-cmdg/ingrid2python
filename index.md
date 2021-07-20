@@ -68,6 +68,7 @@ But it is nicer to have control over the size and aspect ratio, add titles, etc:
 from matplotlib import pyplot as plt
 fig = plt.figure(figsize=(8,4))
 ds.sst[-1].plot()
+plt.title('SSTs of the last month');
 ```
 </p> </details>
 
