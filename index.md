@@ -10,12 +10,12 @@ title: Ingrid2Python
 
 [Ingrid on kage](http://kage.ldeo.columbia.edu:81/expert): 
 
-N.B., We replace the time by an 'ingrid-friendly' (but not CF-compliant) time.
 
 ```
 %ingrid:
 
 /ds {SOURCES .LOCAL .sst.mon.mean.nc
+% Replace the time grid by an 'ingrid-friendly' (but not CF-compliant) time.
 time /time (months since 1891-01-01) ordered 0.5 1 1565.5 NewEvenGRID replaceGRID
 } def
 ds
