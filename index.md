@@ -442,24 +442,6 @@ ds.sst.weighted(weights).mean(('lon', 'lat'))
 ```
 </p> </details>
 
-<details> <summary><b>EOFs/PCs </b></summary> <p>  
-Find the 3 leading EOFs and PCs. Note that ingrid and `eofs.xarray` use different scalings.
-
-```
-%ingrid:
-ds .sst {Y cosd}[lon lat][time]svd ev 1 3 RANGE
-```
-
-```
-#python:
-from eofs.xarray import Eof  # see [documentation](https://ajdawson.github.io/eofs/latest/api/eofs.xarray.html)
-ds_anom = ds.groupby('time.month') - ds.groupby('time.month').mean()
-solver = Eof(ds_anom.sst)
-pcs = solver.pcs(npcs=3)
-eofs = solver.eofsAsCorrelation(neofs=3)
-```
-</p> </details>
-
 <details> <summary><b>Partial Derivatives</b></summary> <p>  
 We prefer to use the `xgcm` package to properly keep track of the grid metrics, but here we use xarray's `differentiate` method since it is similar to ingrid's `partial` method.
 
