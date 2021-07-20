@@ -52,6 +52,25 @@ ds.sst
 ```
 </p> </details>
 
+<details> <summary><b>Basic Plotting</b> </summary> <p>  
+In ingrid, click on a plotting thumbnail
+    
+In python, we can use the built-in `xarray` quick-and-dirty plotting:
+    
+```
+#python:
+ds.sst[-1].plot()
+```    
+But it is nicer to have control over the size and aspect ratio, add titles, etc:
+
+```
+#python:
+from matplotlib import pyplot as plt
+fig = plt.figure(figsize=(8,4))
+ds.sst[-1].plot()
+```
+</p> </details>
+
 <details> <summary><b>Addition/Subtraction/Multiplication</b> </summary> <p>  
 In ingrid, compatible objects (streams, numbers) can be added together element by element
 
