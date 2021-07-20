@@ -26,8 +26,9 @@ eofs.plot(x='lon',y='lat',col='mode',col_wrap=3,add_colorbar=0)
 pcs.plot(x='time',col='mode',col_wrap=3);
 ```
   <details> <summary><b>Plot</b></summary> <p> 
-  </p> </details> 
     <img src="/assets/eofs.png" width="400">
+  </p> </details> 
+    
 </p> </details>
 
 <details> <summary><b>Quantiles</b></summary> <p>  
