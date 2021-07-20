@@ -61,6 +61,10 @@ quants.sel(quantile=0.05).plot(label='5th percentile')
 plt.title('95th and 5th percentiles of SST by latitude')
 plt.legend();
 ```
+<p> 
+<p align="center"><img src="../assets/quantile.png"></p>
+</p> 
+
 </p> </details>
 
 
