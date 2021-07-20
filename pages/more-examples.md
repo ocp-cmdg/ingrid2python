@@ -4,6 +4,9 @@ title: Ingrid2Python
 
 ## Advanced Examples
 
+
+
+
 <details> <summary><b>EOFs/PCs </b></summary> <p>  
 Find the 3 leading EOFs and PCs. Note that ingrid and `eofs.xarray` use different scalings.
 
@@ -25,10 +28,10 @@ eofs = solver.eofsAsCorrelation(neofs=3)
 eofs.plot(x='lon',y='lat',col='mode',col_wrap=3,add_colorbar=0)
 pcs.plot(x='time',col='mode',col_wrap=3);
 ```
-  <details> - <summary><b>- Plot</b></summary> <p> 
-    ![](assets/eofs.png)
-    ![](assets/pcs.png)
-  </p> </details> 
+<p> 
+<p align="center"><img src="/assets/eofs.png"></p>
+<p align="center"><img src="/assets/pcs.png"></p>
+</p> 
     
 </p> </details>
 
