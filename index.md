@@ -1,11 +1,10 @@
 ---
 title: Ingrid2Python
 ---
-## Notation
-
-`ds` : an ingrid `stream` or an xarray `dataset`
 
 ## Basic Examples
+
+`ds` : an ingrid `stream` or an xarray `dataset`
 
 <details> <summary><b>Getting Started: define a dataset </b></summary> <p>  
 
