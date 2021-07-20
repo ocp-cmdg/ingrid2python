@@ -2,7 +2,7 @@
 title: Ingrid2Python
 ---
 
-## More Examples
+## Advanced Examples
 
 <details> <summary><b>EOFs/PCs </b></summary> <p>  
 Find the 3 leading EOFs and PCs. Note that ingrid and `eofs.xarray` use different scalings.
