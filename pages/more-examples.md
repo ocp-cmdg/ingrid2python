@@ -81,7 +81,7 @@ deptht exch [20]deptht toS
 ```
 #python
 import xarray as xr
-import xgcm.  # need version >= 0.5.2
+import xgcm  # need version >= 0.5.2
 import numpy as np
 
 url = 'http://kage.ldeo.columbia.edu:81/SOURCES/.LOCAL/.ORAs5_thetao-clim.nc/.thetao/dods'
@@ -90,5 +90,11 @@ ds = xr.open_dataset(url,decode_times=False).sel(deptht=slice(0,500),lat=slice(-
 depth_3d = ds.deptht.broadcast_like(ds.thetao)
 grid = xgcm.Grid(ds,periodic=False)
 h20 = grid.transform(depth_3d, 'Z', np.array([20]), target_data=ds.thetao, method='linear')
+ds.thetao.sel(lat=slice(-2,2)).mean('lat').plot.contourf(vmin=10,vmax=30,levels=11,yincrease=False)
+h20.squeeze().sel(lat=slice(-2,2)).mean('lat').plot(color='k',linewidth=2)
 ```
+<p> 
+<p align="center"><img src="../assets/h20.png"></p>
+</p> 
+
 </p> </details> 
