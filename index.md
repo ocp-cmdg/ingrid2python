@@ -133,13 +133,13 @@ ds.mean(['lat','lon'])
 
 ```
 %ingrid:
-ds time 12 boxAverage 
+ds lon 5 boxAverage time 12 boxAverage 
 ```
 In python we normally use `resample` for time sampling/averaging, but we can use `coarsen` on any grid.
     
 ```
 #python:
-ds.coarsen(time=12,boundary='trim').mean()
+ds.coarsen(lon=5).mean().coarsen(time=12,boundary='trim').mean()
 ```
     
 For the time grid, here is a `resample` example - note the location of the time values for dsY0 vs. dsY
