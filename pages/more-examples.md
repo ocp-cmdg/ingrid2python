@@ -99,3 +99,20 @@ h20.squeeze().sel(lat=slice(-2,2)).mean('lat').plot(color='k',linewidth=2)
 </p> 
 
 </p> </details> 
+
+<details> <summary><b></b></summary> <p>  
+
+```
+$ingrid
+
+```
+  
+```
+#python
+
+```
+<p> 
+<p align="center"><img src="../assets/imgs/name.png"></p>
+</p> 
+
+</p> </details> 
