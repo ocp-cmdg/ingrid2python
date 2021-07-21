@@ -129,7 +129,7 @@ ds.mean(['lat','lon'])
 ```
 </p> </details>
 
-<details> <summary><b>Grid Coarsening</b> </summary> <p>  
+<details> <summary><b>Grid Coarsening / Box Averaging</b> </summary> <p>  
 
 ```
 %ingrid:
