@@ -62,6 +62,7 @@ ax.set_extent([100, 290, -50, 50], crs=ccrs.PlateCarree())
 # Put a background image on for nice sea rendering.
 ax.stock_img()
 CS = ds.plot.contour(ax=ax, transform=ccrs.PlateCarree(),colors='k',vmin=10,vmax=30,levels=11)
+# Add labels on contours
 ax.clabel(CS, inline=1, fontsize=8, fmt='%1.0f')
 
 # Create a feature for States/Admin 1 regions at 1:50m from Natural Earth
@@ -75,6 +76,7 @@ ax.add_feature(cfeature.COASTLINE,zorder=3)
 ax.add_feature(cfeature.BORDERS, edgecolor='gray')
 ax.add_feature(states_provinces, edgecolor='gray')
 
+# Add longitude, latitude labels
 gl = ax.gridlines(draw_labels=True, alpha=0.0, xlocs=np.arange(-160,181,20))
 gl.top_labels = False
 ```
