@@ -55,6 +55,26 @@ ds_new = da.to_dataset(name='sst')
   
 </p> </details> 
 
+<details> <summary><b>Information</b></summary> <p>  
+    
+```
+import xarray as xr
+# Print version of a package
+print(xr.__version__)
+  
+url = 'http://kage.ldeo.columbia.edu:81/SOURCES/.LOCAL/.sst.mon.mean.nc/.sst/dods'
+ds = xr.open_dataset(url)  
+# Print version of a package
+print(ds.info())
+  
+# print size of dataset in megabytes
+print(ds.nbytes/1e6,'M')
+  
+# print names and sizes of dimensions
+print(ds.dims)
+```
+  
+</p> </details> 
 
 [//]: # (This is the beginning.)  
 
@@ -68,3 +88,4 @@ ds_new = da.to_dataset(name='sst')
 </p> </details> 
 
 [//]: # (This is the end.)  
+
