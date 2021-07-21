@@ -30,7 +30,7 @@ ds.time
 
 [//]: # (This is the beginning.)  
 
-<details> <summary><b>New Entry</b></summary> <p>  
+<details> <summary><b></b></summary> <p>  
     
 ```
 
