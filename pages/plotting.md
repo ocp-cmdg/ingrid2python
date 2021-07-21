@@ -94,6 +94,7 @@ ds = xr.open_dataset('http://kage.ldeo.columbia.edu:81/SOURCES/.LOCAL/.sst.mon.m
 ds_mon_anom = ds.groupby('time.month').mean() - ds.mean('time')
 ds_mon_anom.sst.plot(x='lon',y='lat',col='month',col_wrap=4,add_colorbar=0);
 ```
+<p align="center"><img src="../assets/imgs/xarray-subplots.png"></p>
   
 But much more control is possible when using `matplotlib` directly, see [subplots](https://matplotlib.org/stable/gallery/subplots_axes_and_figures/subplots_demo.html).
 </p> </details>
