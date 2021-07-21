@@ -100,7 +100,7 @@ h20.squeeze().sel(lat=slice(-2,2)).mean('lat').plot(color='k',linewidth=2)
 
 </p> </details> 
 
-<details> <summary><b>Open Multiple NetCDF Files</b></summary> <p>  
+<details> <summary><b>Create Dataset from Multiple NetCDF Files</b></summary> <p>  
 
 For example, suppose we have downloaded a few years of [CPC Global Unified Gauge-Based Analysis of Daily Precipitation](https://psl.noaa.gov/data/gridded/data.cpc.globalprecip.html) data.
 ```
