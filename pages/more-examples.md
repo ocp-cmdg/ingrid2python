@@ -100,19 +100,38 @@ h20.squeeze().sel(lat=slice(-2,2)).mean('lat').plot(color='k',linewidth=2)
 
 </p> </details> 
 
-<details> <summary><b></b></summary> <p>  
+<details> <summary><b>Open Multiple NetCDF Files</b></summary> <p>  
 
-```
-$ingrid
-
-```
-  
+For example, suppose we have downloaded a few years of [CPC Global Unified Gauge-Based Analysis of Daily Precipitation](https://psl.noaa.gov/data/gridded/data.cpc.globalprecip.html) data.
 ```
 #python
+import fsspec.implementations.ftp
+import os
 
+ftpfs = fsspec.implementations.ftp.FTPFileSystem("ftp.cdc.noaa.gov")
+files = ftpfs.glob("/Datasets/cpc_global_precip/*202*.nc")
+print(files)
+for file in files:
+    url = 'ftp://ftp.cdc.noaa.gov' + file
+    file_name = file.split('/Datasets/cpc_global_precip/')[-1]   
+    print(file_name)
+    if os.path.exists(file_name):
+        print(f'File {file} already exists')
+        continue
+    command = f'wget {url}'
+    print(command)
+    os.system(command)
+ds = xr.open_mfdataset('precip.20*.nc')
+ds_ltm = xr.open_dataset('precip.day.1991-2020.ltm.nc')
 ```
+So `ds` is now the 2020 and 2021 daily land precipitation. We also have a long-term mean dataset, which may be useful.
+  
+```
+ds.precip.mean('time').plot()
+```
+  
 <p> 
-<p align="center"><img src="../assets/imgs/name.png"></p>
+<p align="center"><img src="../assets/imgs/precip_mean.png"></p>
 </p> 
 
 </p> </details> 
