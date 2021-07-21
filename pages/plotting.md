@@ -133,7 +133,7 @@ Plotting DataArrays: For examples of all of the following, see [xarray plotting]
   
 There are also other plotting methods, such as ds.plot.violin, ds.plot.bivariate, ds.plot.table, etc.
   
-IRIDL has started using [hvplot](https://hvplot.holoviz.org/), which is an interactive plotting tool. We have installed it on `carney`, but find it somewhat frustrating, but cute.
+IRIDL has started using [hvplot](https://hvplot.holoviz.org/), which is an interactive plotting tool. We have installed it on `carney`, and find it cute, but somewhat frustrating.
   
 </p> </details>
 
