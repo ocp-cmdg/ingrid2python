@@ -4,7 +4,7 @@ title: Ingrid2Python
 
 ## Troubleshooting
 
-<details> <summary><b>Time Grid Trouble</b></summary> <p>  
+<details> <summary><b>Time Grids</b></summary> <p>  
   
 If your dataset, `ds`, is giving trouble with the time grid, `time`,  (as happens frequently), just replace it by a `datetime64` time grid.
   
