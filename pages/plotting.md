@@ -49,12 +49,16 @@ import xarray as xr
 import matplotlib.pyplot as plt
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
-
+```
+  
+```
 url = 'http://kage.ldeo.columbia.edu:81/SOURCES/.LOCAL/.sst.mon.mean.nc/.sst/time/AVERAGE/dods'
 ds = xr.open_dataset(url).sel(lat=slice(50,-50)).sst
-
+```
+  
+```
 fig = plt.figure(figsize=(8,5))
-ax = fig.add_subplot(1, 1, 1, projection=ccrs.PlateCarree(central_longitude=180))
+ax = plt.axes(projection=ccrs.PlateCarree(central_longitude=180))
 ax.set_extent([100, 290, -50, 50], crs=ccrs.PlateCarree())
 
 # Put a background image on for nice sea rendering.
