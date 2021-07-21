@@ -525,3 +525,26 @@ ds = tas.sel(time = slice('2010-01-01','2014-12-31'))
 ds_monthly = ds.resample(time='1M',label='left',loffset='15D').mean()
 ```
 </p> </details>
+    
+<details> <summary><b>Save Dataset as a Netcdf File</b></summary> <p>  
+
+```
+%ingrid:
+SOURCES .LOCAL .tas_day_CESM2_amip_20100101-20150101.nc .tas
+time /T renameGRID
+monthlyAverage
+(tas.mon.mean.nc)writeCDF
+```
+N.B., `xarray` saves our usual dataset with a time grid that `ingrid` (and `ncview`, etc) will not be able to parse. If you just want to read it back using xr.open_dataset(), that is fine. Otherwise the time grid and the default `encoding` of the netcdf file needs to be changed.
+    
+```
+#python:    
+import xarray as xr
+
+url='http://kage.ldeo.columbia.edu:81/expert/SOURCES/.LOCAL/.tas_day_CESM2_amip_20100101-20150101.nc/.tas/dods'
+ds=xr.open_dataset(url,decode_times=True)
+ds_monthly = ds.resample(time='1M',label='left',loffset='15D').mean()
+ds_monthly.to_netcdf('tas.mon.mean.nc')
+```
+</p> </details>
+
