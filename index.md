@@ -502,12 +502,12 @@ monthlyAverage
 ```
 
 ```
-#python:
+#python:    
 import xarray as xr
 
 url='http://kage.ldeo.columbia.edu:81/expert/SOURCES/.LOCAL/.tas_day_CESM2_amip_20100101-20150101.nc/.tas/dods'
-tas=xr.open_dataset(url,decode_times=True)
-tas = tas.sel(time = slice('2010-01-01','2014-12-31'))
-tas_monthly = tas.resample(time='1M').mean()
+ds=xr.open_dataset(url,decode_times=True)
+ds = tas.sel(time = slice('2010-01-01','2014-12-31'))
+ds_monthly = ds.resample(time='1M',label='left',loffset='15D').mean()
 ```
 </p> </details>
