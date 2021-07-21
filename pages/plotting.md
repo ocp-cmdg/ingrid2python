@@ -41,6 +41,7 @@ ax.add_feature(cfeature.BORDERS)
 <p align="center"><img src="../assets/imgs/basic-cartopy.png"></p>
 </p> </details>
 
+
 <details> <summary><b>More Features, Labels</b></summary> <p>  
 
 ```
@@ -99,6 +100,20 @@ ds_mon_anom.sst.plot(x='lon',y='lat',col='month',col_wrap=4,add_colorbar=0);
 But much more control is possible when using `matplotlib` directly, see [subplots](https://matplotlib.org/stable/gallery/subplots_axes_and_figures/subplots_demo.html).
 </p> </details>
 
+<details> <summary><b>Reversing Grid Direction</b></summary> <p>  
+
+The keyword arguments `xincrease` and `yincrease` control the axis direction. 
+   
+```
+import xarray as xr
+url = 'http://kage.ldeo.columbia.edu:81/SOURCES/.LOCAL/.ORAs5_thetao-clim.nc/.thetao/dods'
+ds = xr.open_dataset(url,decode_times=False).sel(deptht=slice(0,300),lat=slice(-30,30),lon=slice(150,250)).mean('time')
+
+ds.thetao.sel(lat=slice(-2,2)).mean('lat').plot.contourf(vmin=10,vmax=30,levels=11,yincrease=False)
+```
+<p align="center"><img src="../assets/imgs/theta.png"></p>
+  
+</p> </details>
 <details> <summary><b>Types of Plots</b></summary> <p>  
 
 Plotting DataArrays: For examples of all of the following, see [xarray plotting](http://xarray.pydata.org/en/stable/user-guide/plotting.html)
