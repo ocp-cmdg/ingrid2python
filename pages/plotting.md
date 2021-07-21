@@ -33,11 +33,9 @@ Plot coastlines and then pick a [transform](https://scitools.org.uk/cartopy/docs
 ax.coastlines()
 ds.plot.contour(ax=ax, transform=ccrs.PlateCarree(),levels=30)
 ```
-Add [features](https://scitools.org.uk/cartopy/docs/latest/matplotlib/feature_interface.html), if desired:  (typing <Tab> after `cfeature.` will list possible completions)
+Add [feature](https://scitools.org.uk/cartopy/docs/latest/matplotlib/feature_interface.html), if desired:  (typing <Tab> after `cfeature.` will list possible completions)
   
 ```
-ax.add_feature(cfeature.LAND)
-ax.add_feature(cfeature.RIVERS)
 ax.add_feature(cfeature.BORDERS)
 ```
 <p align="center"><img src="../assets/basic-cartopy.png"></p>
