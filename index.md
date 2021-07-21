@@ -135,11 +135,23 @@ ds.mean(['lat','lon'])
 %ingrid:
 ds time 12 boxAverage 
 ```
-In python we normally use `resample` for time sampling/averaging, but we can use `coarsen` on any type of grid.
+In python we normally use `resample` for time sampling/averaging, but we can use `coarsen` on any grid.
     
 ```
 #python:
 ds.coarsen(time=12,boundary='trim').mean()
+```
+    
+For the time grid, here is a `resample` example - note the location of the time values for dsY0 vs. dsY
+```
+#python
+url = 'http://kage.ldeo.columbia.edu:81/SOURCES/.LOCAL/.sst.mon.mean.nc/.sst/dods'
+ds = xr.open_dataset(url).mean(['lon','lat']).sel(time=slice('2000','2021'))
+dsY0 = ds.resample(time='Y').mean()
+dsY = ds.resample(time='Y',label='left',loffset='6M').mean()
+ds.sst.plot()
+dsY.sst.plot()
+dsY0.sst.plot()
 ```
 </p> </details>
 
