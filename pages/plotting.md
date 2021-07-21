@@ -98,3 +98,23 @@ ds_mon_anom.sst.plot(x='lon',y='lat',col='month',col_wrap=4,add_colorbar=0);
   
 But much more control is possible when using `matplotlib` directly, see [subplots](https://matplotlib.org/stable/gallery/subplots_axes_and_figures/subplots_demo.html).
 </p> </details>
+
+<details> <summary><b>Types of Plots</b></summary> <p>  
+
+Plotting DataArrays: For examples of all of the following, see [xarray plotting](http://xarray.pydata.org/en/stable/user-guide/plotting.html)
+  
+- da.plot.pcolormesh()
+- da.plot.contour()
+- da.plot.contourf()
+- da.plot.imshow()
+- da.plot.line()
+- da.plot.hist()
+- da.plot.bar()
+- da.plot.step()
+- da.plot.surface()
+- ds.plot.scatter()
+- ds.plot.quiver()
+- ds.plot.streamplot()
+  
+</p> </details>
+
