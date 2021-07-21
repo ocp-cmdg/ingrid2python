@@ -103,6 +103,9 @@ h20.squeeze().sel(lat=slice(-2,2)).mean('lat').plot(color='k',linewidth=2)
 <details> <summary><b>Create Dataset from Multiple NetCDF Files</b></summary> <p>  
 
 For example, suppose we have downloaded a few years of [CPC Global Unified Gauge-Based Analysis of Daily Precipitation](https://psl.noaa.gov/data/gridded/data.cpc.globalprecip.html) data.
+  
+First we will get the last few years of data directly from `cdc.noaa.gov`:
+  
 ```
 #python
 import fsspec.implementations.ftp
@@ -121,7 +124,12 @@ for file in files:
     command = f'wget {url}'
     print(command)
     os.system(command)
+```
+That was the hard part, now we just open them using the multi-file version of `open_dataset`:
+  
+```
 ds = xr.open_mfdataset('precip.20*.nc')
+
 ds_ltm = xr.open_dataset('precip.day.1991-2020.ltm.nc')
 ```
 So `ds` is now the 2020 and 2021 daily land precipitation. We also have a long-term mean dataset, which may be useful.
