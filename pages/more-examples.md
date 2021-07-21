@@ -166,8 +166,9 @@ SOURCES .NOAA .NCEP .CPC .CAMS .station .precipitation
 #python
 url = 'http://iridl.ldeo.columbia.edu/expert/SOURCES/.NOAA/.NCEP/.CPC/.CAMS/.station/.precipitation/dods'
 ds = xr.open_dataset(url,decode_times=False)
-dsl = ds.where((ds.lat<50) & (ds.lat>30)).where((ds.lon<-90) & (ds.lon>-110))
-dsl.mean('IWMO').prcp.plot()
+dsl = ds.where((ds.lat<50) & (ds.lat>30)).where((ds.lon<-90) & (ds.lon>-110)).sel(T=slice('1856-01','2000-12')).mean('IWMO')
+dsl_anom = dsl.groupby('T.month') - dsl.groupby('T.month').mean('T')
+dsl_anom.prcp.plot()
 ```
 <p> 
 <p align="center"><img src="../assets/imgs/station.png"></p>
