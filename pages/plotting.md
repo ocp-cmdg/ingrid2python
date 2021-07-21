@@ -41,16 +41,42 @@ ax.add_feature(cfeature.RIVERS)
 ax.add_feature(cfeature.BORDERS)
 ```
 <p align="center"><img src="../assets/basic-cartopy.png"></p>
-  
 </p> </details>
 
-<details> <summary><b>Fixing Labels, Making Presentable</b></summary> <p>  
+<details> <summary><b>More Features, Labels</b></summary> <p>  
 
 ```
-%ingrid:
-```
+import numpy as np
+import xarray as xr
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
+import cartopy.feature as cfeature
 
+url = 'http://kage.ldeo.columbia.edu:81/SOURCES/.LOCAL/.sst.mon.mean.nc/.sst/time/AVERAGE/dods'
+ds = xr.open_dataset(url).sel(lat=slice(50,-50)).sst
+
+fig = plt.figure(figsize=(8,5))
+ax = fig.add_subplot(1, 1, 1, projection=ccrs.PlateCarree(central_longitude=180))
+ax.set_extent([100, 290, -50, 50], crs=ccrs.PlateCarree())
+
+# Put a background image on for nice sea rendering.
+ax.stock_img()
+CS = ds.plot.contour(ax=ax, transform=ccrs.PlateCarree(),colors='k',vmin=10,vmax=30,levels=11)
+ax.clabel(CS, inline=1, fontsize=8, fmt='%1.0f')
+
+# Create a feature for States/Admin 1 regions at 1:50m from Natural Earth
+states_provinces = cfeature.NaturalEarthFeature(
+    category='cultural',
+    name='admin_1_states_provinces_lines',
+    scale='50m',
+    facecolor='none')
+
+ax.add_feature(cfeature.COASTLINE,zorder=3)
+ax.add_feature(cfeature.BORDERS, edgecolor='gray')
+ax.add_feature(states_provinces, edgecolor='gray')
+
+gl = ax.gridlines(draw_labels=True, alpha=0.0, xlocs=np.arange(-160,181,20))
+gl.top_labels = False
 ```
-#python:
-```
+<p align="center"><img src="../assets/more-cartopy.png"></p>
 </p> </details>
