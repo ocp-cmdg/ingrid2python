@@ -84,3 +84,14 @@ gl.top_labels = False
 ```
 <p align="center"><img src="../assets/imgs/more-cartopy.png"></p>
 </p> </details>
+
+<details> <summary><b>Subplots</b></summary> <p>  
+
+```
+import numpy as np
+import xarray as xr
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
+import cartopy.feature as cfeature
+```
+</p> </details>
