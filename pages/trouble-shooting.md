@@ -78,6 +78,25 @@ print(ds.dims)
 
 [//]: # (This is the beginning.)  
 
+<details> <summary><b>Longitude and Latitude Grids</b></summary> <p>  
+Many difficulties arise when the Longitude grid is [-180,180] and a calculation requires [0,360] or when
+  the Latitude grid is North to South instead of South to North.  These are simple problems which can be easily fixed.
+  
+```
+# Switch North to South 
+ds = ds.sortby('lat')
+  
+# Longitude [-180,180] to [0,360]
+ds.coords['lon'] = np.mod(ds['lon'], 360)
+ds = ds.reindex({ 'lon' : np.sort(ds['lon'])})
+```
+  
+</p> </details> 
+
+[//]: # (This is the end.)  
+
+[//]: # (This is the beginning.)  
+
 <details> <summary><b></b></summary> <p>  
     
 ```
@@ -88,4 +107,5 @@ print(ds.dims)
 </p> </details> 
 
 [//]: # (This is the end.)  
+
 
