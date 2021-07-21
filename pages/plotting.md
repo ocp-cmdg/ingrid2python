@@ -87,11 +87,13 @@ gl.top_labels = False
 
 <details> <summary><b>Subplots</b></summary> <p>  
 
+The built-in xarray plotting allows for multiple plots:
+  
 ```
-import numpy as np
-import xarray as xr
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-import cartopy.feature as cfeature
+ds = xr.open_dataset('http://kage.ldeo.columbia.edu:81/SOURCES/.LOCAL/.sst.mon.mean.nc/.sst/dods')
+ds_mon_anom = ds.groupby('time.month').mean() - ds.mean('time')
+ds_mon_anom.sst.plot(x='lon',y='lat',col='month',col_wrap=4,add_colorbar=0);
 ```
+  
+But much more control is possible when using `matplotlib` directly, see [subplots](https://matplotlib.org/stable/gallery/subplots_axes_and_figures/subplots_demo.html).
 </p> </details>
