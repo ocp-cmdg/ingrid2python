@@ -29,8 +29,8 @@ eofs.plot(x='lon',y='lat',col='mode',col_wrap=3,add_colorbar=0)
 pcs.plot(x='time',col='mode',col_wrap=3);
 ```
 <p> 
-<p align="center"><img src="../assets/eofs.png"></p>
-<p align="center"><img src="../assets/pcs.png"></p>
+<p align="center"><img src="../assets/imgs/eofs.png"></p>
+<p align="center"><img src="../assets/imgs/pcs.png"></p>
 </p> 
     
 </p> </details>
@@ -62,7 +62,7 @@ plt.title('95th and 5th percentiles of SST by latitude')
 plt.legend();
 ```
 <p> 
-<p align="center"><img src="../assets/quantile.png"></p>
+<p align="center"><img src="../assets/imgs/quantile.png"></p>
 </p> 
 
 </p> </details>
@@ -95,7 +95,7 @@ ds.thetao.sel(lat=slice(-2,2)).mean('lat').plot.contourf(vmin=10,vmax=30,levels=
 h20.squeeze().sel(lat=slice(-2,2)).mean('lat').plot(color='k',linewidth=2)
 ```
 <p> 
-<p align="center"><img src="../assets/h20.png"></p>
+<p align="center"><img src="../assets/imgs/h20.png"></p>
 </p> 
 
 </p> </details> 

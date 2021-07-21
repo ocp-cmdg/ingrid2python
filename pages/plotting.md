@@ -38,7 +38,7 @@ Add [feature](https://scitools.org.uk/cartopy/docs/latest/matplotlib/feature_int
 ```
 ax.add_feature(cfeature.BORDERS)
 ```
-<p align="center"><img src="../assets/basic-cartopy.png"></p>
+<p align="center"><img src="../assets/imgs/basic-cartopy.png"></p>
 </p> </details>
 
 <details> <summary><b>More Features, Labels</b></summary> <p>  
@@ -78,5 +78,5 @@ ax.add_feature(states_provinces, edgecolor='gray')
 gl = ax.gridlines(draw_labels=True, alpha=0.0, xlocs=np.arange(-160,181,20))
 gl.top_labels = False
 ```
-<p align="center"><img src="../assets/more-cartopy.png"></p>
+<p align="center"><img src="../assets/imgs/more-cartopy.png"></p>
 </p> </details>
