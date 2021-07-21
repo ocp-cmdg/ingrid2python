@@ -27,3 +27,16 @@ ds.time
 
 ```
 </p> </details> 
+
+[//]: # (This is the beginning.)  
+
+<details> <summary><b>New Entry</b></summary> <p>  
+    
+```
+
+
+```
+  
+</p> </details> 
+
+[//]: # (This is the end.)  
