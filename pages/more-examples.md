@@ -61,9 +61,7 @@ quants.sel(quantile=0.05).plot(label='5th percentile')
 plt.title('95th and 5th percentiles of SST by latitude')
 plt.legend();
 ```
-<p> 
 <p align="center"><img src="../assets/imgs/quantile.png"></p>
-</p> 
 
 </p> </details>
 
@@ -94,9 +92,7 @@ h20 = grid.transform(depth_3d, 'Z', np.array([20]), target_data=ds.thetao, metho
 ds.thetao.sel(lat=slice(-2,2)).mean('lat').plot.contourf(vmin=10,vmax=30,levels=11,yincrease=False)
 h20.squeeze().sel(lat=slice(-2,2)).mean('lat').plot(color='k',linewidth=2)
 ```
-<p> 
 <p align="center"><img src="../assets/imgs/h20.png"></p>
-</p> 
 
 </p> </details> 
 
@@ -170,8 +166,15 @@ dsl = ds.where((ds.lat<50) & (ds.lat>30)).where((ds.lon<-90) & (ds.lon>-110)).se
 dsl_anom = dsl.groupby('T.month') - dsl.groupby('T.month').mean('T')
 dsl_anom.prcp.plot()
 ```
-<p> 
 <p align="center"><img src="../assets/imgs/station.png"></p>
-</p> 
 
+```
+url = 'http://iridl.ldeo.columbia.edu/expert/SOURCES/.NOAA/.NCEP/.CPC/.CAMS/.station/.precipitation/dods'
+ds = xr.open_dataset(url,decode_times=False).mean('time')
+fig = plt.figure(figsize=(9,6))
+ds.plot.scatter(x='lon',y='lat',c=dsm.prcp)
+```
+  
+<p align="center"><img src="../assets/imgs/station-scatter.png"></p> 
+  
 </p> </details>
