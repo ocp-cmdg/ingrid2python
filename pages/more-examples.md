@@ -166,7 +166,7 @@ SOURCES .NOAA .NCEP .CPC .CAMS .station .precipitation
 #python
 url = 'http://iridl.ldeo.columbia.edu/expert/SOURCES/.NOAA/.NCEP/.CPC/.CAMS/.station/.precipitation/dods'
 ds = xr.open_dataset(url,decode_times=False)
-dsl = ds.where(ds.lat<50).where(ds.lat>30).where(ds.lon<-90).where(ds.lon>-110)
+dsl = ds.where((ds.lat<50) & (ds.lat>30)).where((ds.lon<-90) & (ds.lon>-110))
 dsl.mean('IWMO').prcp.plot()
 ```
 <p> 
