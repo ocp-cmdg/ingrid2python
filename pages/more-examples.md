@@ -143,3 +143,34 @@ ds.precip.mean('time').plot()
 </p> 
 
 </p> </details> 
+
+<details> <summary><b>Station Data</b></summary> <p>  
+
+```
+$ingrid
+SOURCES .NOAA .NCEP .CPC .CAMS .station .precipitation
+  lon
+   -90. -110. masknotrange
+   SELECT
+  lat
+   30. 50. masknotrange
+   SELECT
+  .prcp
+  [IWMO]average
+  T (Jan 1856) (Dec 2000) RANGE
+  yearly-anomalies
+  /name (GP) def
+```
+
+```
+#python
+url = 'http://iridl.ldeo.columbia.edu/expert/SOURCES/.NOAA/.NCEP/.CPC/.CAMS/.station/.precipitation/dods'
+ds = xr.open_dataset(url,decode_times=False)
+dsl = ds.where(ds.lat<50).where(ds.lat>30).where(ds.lon<-90).where(ds.lon>-110)
+dsl.mean('IWMO').prcp.plot()
+```
+<p> 
+<p align="center"><img src="../assets/imgs/station.png"></p>
+</p> 
+
+</p> </details>
