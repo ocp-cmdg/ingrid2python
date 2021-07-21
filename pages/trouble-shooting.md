@@ -39,7 +39,7 @@ ds.time
 - You cannot plot a Dataset, only a DataArray. A pink error results 
   
   ```html
-  <font color='pink'>ValueError: Dataset.plot cannot be called directly. Use an explicit plot method, e.g. ds.plot.scatter(...)</font>
+  <p style="color: #FFDDDD">ValueError: Dataset.plot cannot be called directly. Use an explicit plot method, e.g. ds.plot.scatter(...)</p>
   ```
 - You can combine DataArrays in one Dataset
 - You can convert a DataArray into a Dataset - if the DataArray doesn't know the name of the variable, you can specify it.
