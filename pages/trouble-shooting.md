@@ -38,9 +38,9 @@ ds.time
 - An `xarray DataSet` contains `xarray DataArrays`.  Each DataArray usually corresponds to what we think of as one variable. A good convention, so you remember which you are dealing with, is to call Datasets: `ds_{name}` and DataArrays: `da_{name}`. 
 - You cannot plot a Dataset, only a DataArray. A pink error results 
   
-  ```html
-  <p style="color: #FFDDDD">ValueError: Dataset.plot cannot be called directly. Use an explicit plot method, e.g. ds.plot.scatter(...)</p>
-  ```
+```html
+<p style="color: #FFDDDD">ValueError: Dataset.plot cannot be called directly. Use an explicit plot method, e.g. ds.plot.scatter(...)</p>
+```
 - You can combine DataArrays in one Dataset
 - You can convert a DataArray into a Dataset - if the DataArray doesn't know the name of the variable, you can specify it.
   
