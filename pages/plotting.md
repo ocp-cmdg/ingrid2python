@@ -194,6 +194,7 @@ gl = ax.gridlines(draw_labels=True, alpha=0.0, xlocs=np.arange(-160,181,20))
 gl.top_labels = False
 gl.right_labels = False
 ```
-  <div align="center"><table><tr><td><img src="../assets/imgs/color-contour.png"></td><td><img src="../assets/imgs/color-contour-jet.png"></td></tr></table></div>
+  <div align="center"><table><tr><td>cmap = 'bwr'</td><td>cmap = 'jet'</td></tr>
+    <tr><td><img src="../assets/imgs/color-contour.png"></td><td><img src="../assets/imgs/color-contour-jet.png"></td></tr></table></div>
 </p> </details>
 
