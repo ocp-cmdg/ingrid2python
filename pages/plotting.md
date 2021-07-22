@@ -152,7 +152,9 @@ IRIDL has started using [hvplot](https://hvplot.holoviz.org/), which is an inter
    DATA 5 STEP
    X Y fig: colors contours land :fig
 ```
-  <p align="center"><img src="../assets/imgs/color-contour-ingrid.png" width="50%"></p>
+  <p align="center"><img src="../assets/imgs/color-contour-ingrid.png" width="80%"></p>
+  
+Try to match this ingrid figure as closely as possible in python ...
   
 ```
 #python
@@ -216,6 +218,6 @@ ax.yaxis.set_major_formatter(LatitudeFormatter())
 ax.set_xlabel('longitude')
 ax.set_ylabel('latitude')
 ```
-  <p align="center"><img src="../assets/imgs/color-contour-correlation.png"></p>
+  <p align="center"><img src="../assets/imgs/color-contour-correlation.png" width="80%"></p>
 </p> </details>
 
