@@ -141,7 +141,7 @@ or find the daily anomalies and plot:
 ds_daily_anom = ds.groupby('time.day') - ds_ltm.groupby('time.day').mean('time')
 ds_anom.precip[-1].plot(vmin=-10,vmax=10)
 ```
-<p align="center"><img src="../assets/imgs/precip_anom.png"></p>
+<p align="center"><img src="../assets/imgs/prcp_anom.png"></p>
 
 </p> </details> 
 
