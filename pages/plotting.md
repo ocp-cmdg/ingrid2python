@@ -152,16 +152,23 @@ IRIDL has started using [hvplot](https://hvplot.holoviz.org/), which is an inter
    DATA 5 STEP
    X Y fig: colors contours land :fig
 ```
+  <p align="center"><img src="../assets/imgs/color-contour-ingrid.png" width="50%"></p>
   
 ```
 #python
 import xarray as xr
 import pandas as pd
 import numpy as np
-import matplotlib.pyplot as plt
-import cartopy.crs as ccrs
-import cartopy.feature as cfeature  
 
+import matplotlib.pyplot as plt
+from matplotlib import colors
+
+import cartopy.crs as ccrs
+import cartopy.feature as cfeature
+from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
+```
+  
+```
 # Get the Dataset
 url = 'http://kage.ldeo.columbia.edu:81/SOURCES/.DASILVA/.SMD94/.anomalies/.sst/dods'
 url2 = 'http://kage.ldeo.columbia.edu:81/SOURCES/.DASILVA/.SMD94/.anomalies/.slp/dods'
@@ -175,30 +182,40 @@ ds.coords['X'] = (ds.coords['X'] + 180) % 360 - 180
 ds = ds.sortby(ds.X)
 
 # Restrict the domain
-dss = ds.sel(X=slice(-100,20),Y=slice(-10,90)).isel(T=0).load()
+dss = ds.sel(X=slice(-100,20),Y=slice(-10,90)).isel(T=0)
+  
+## Now make the figure
+ 
+cmap_data = [(0, 'navy'),(0.1, 'blue'),(0.2, 'DeepSkyBlue'),(0.3, 'aquamarine'),(0.4,'PaleGreen'),(0.45,'moccasin'),
+             (0.55,'moccasin'),(.6,'yellow'),(.7,'DarkOrange'),(.8,'red'),(1.0,'DarkRed')]
+cmap = colors.LinearSegmentedColormap.from_list('correlationcolorscale', cmap_data)
+plt.register_cmap('correlationcolorscale', cmap)
 
-# Now make the figure
 fig = plt.figure(figsize=(8,8))
 
 ax = plt.axes(projection=ccrs.PlateCarree(central_longitude=0))
 ax.set_extent([-100, 20, 0, 90], crs=ccrs.PlateCarree())
 
-cb = dss.sst.plot.contourf(ax=ax, transform=ccrs.PlateCarree(), vmin=-2, vmax=2, levels=41, cmap='jet', add_colorbar=False,rasterized=True)
-CS = dss.slp.plot.contour(ax=ax, colors= 'k', transform=ccrs.PlateCarree(), vmin=-20,vmax=20,levels=9)
-CS.collections[4].set_linewidth(3) 
+cb = dss.sst.plot.contourf(ax=ax, transform=ccrs.PlateCarree(), vmin=-2, vmax=2, levels=41, cmap='correlationcolorscale',
+                           add_colorbar=False,rasterized=True)
+CS = dss.slp.plot.contour(ax=ax, colors = 'black', transform=ccrs.PlateCarree(), vmin=-20, vmax=20, levels=9)
+CS.collections[4].set_linewidth(3) # make the zero line wider
 ax.clabel(CS, inline=1, fontsize=8, fmt='%1.0f')
+
 ax.add_feature(cfeature.LAND,facecolor='k')
-cbar = plt.colorbar(cb, shrink=1.0, pad=.05, label=r'SSTA ($\degree C$)', orientation='horizontal')
-gl = ax.gridlines(draw_labels=True, alpha=0.0, xlocs=np.arange(-160,181,20))
-gl.top_labels = False
-gl.right_labels = False
+
+cbar = plt.colorbar(cb, extend = 'min', shrink=1.0, pad=.10, label=r'SSTA ($\degree C$)', orientation='horizontal')
+
+xticks = np.arange(-80, 0.1, 20)
+yticks = np.arange(20, 80.1, 20)
+ax.set_xticks(xticks, crs=ccrs.PlateCarree())
+ax.set_yticks(yticks, crs=ccrs.PlateCarree())
+ax.xaxis.set_major_formatter(LongitudeFormatter(zero_direction_label=True))
+ax.yaxis.set_major_formatter(LatitudeFormatter())
+
+ax.set_xlabel('longitude')
+ax.set_ylabel('latitude')
 ```
-  <div align="center">
-    <table cellpadding="0" cellspacing="0">
-    <tr><td align="center">ingrid</td><td align="center">cmap = 'BlueOrange12_11'</td></tr>
-    <tr><td align="center"><img src="../assets/imgs/color-contour-ingrid.png" width="80%"></td><td align="center"><img src="../assets/imgs/color-contour-BlueOrange12_11.png"></td></tr>
-    <tr><td align="center">cmap = 'correlation'</td><td align="center">cmap = 'jet'</td></tr>
-    <tr><td align="center"><img src="../assets/imgs/color-contour-correlation.png"></td><td align="center"><img src="../assets/imgs/color-contour-RdBu_r.png"</td></tr>.         </table>
-    </div>
+  <p align="center"><img src="../assets/imgs/color-contour-correlation.png"></p>
 </p> </details>
 
