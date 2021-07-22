@@ -95,20 +95,3 @@ ds.coords['lon'] = (ds.coords['lon'] + 180) % 360 - 180
 ds = ds.sortby(ds.lon)
 ```
 </p> </details> 
-
-[//]: # (This is the end.)  
-
-[//]: # (This is the beginning.)  
-
-<details> <summary><b></b></summary> <p>  
-    
-```
-
-
-```
-  
-</p> </details> 
-
-[//]: # (This is the end.)  
-
-
