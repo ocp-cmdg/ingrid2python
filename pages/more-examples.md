@@ -133,16 +133,15 @@ So `ds` is now the 2020 and 2021 daily land precipitation. We also have a long-t
 ```
 ds.precip.mean('time').plot()
 ```
+  <p align="center"><img src="../assets/imgs/precip_mean.png"></p>
+  
 or find the daily anomalies and plot:
   
 ```
 ds_daily_anom = ds.groupby('time.day') - ds_ltm.groupby('time.day').mean('time')
 ds_anom.precip[-1].plot(vmin=-10,vmax=10)
 ```
-  
-<p> 
-<p align="center"><img src="../assets/imgs/precip_mean.png"></p>
-</p> 
+<p align="center"><img src="../assets/imgs/precip_anom.png"></p>
 
 </p> </details> 
 
