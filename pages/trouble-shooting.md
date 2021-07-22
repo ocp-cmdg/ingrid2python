@@ -89,8 +89,11 @@ ds = ds.sortby('lat')
 # Longitude [-180,180] to [0,360]
 ds.coords['lon'] = np.mod(ds['lon'], 360)
 ds = ds.reindex({ 'lon' : np.sort(ds['lon'])})
+
+# Longitude [0,360] to [-180,180] 
+ds.coords['lon'] = (ds.coords['lon'] + 180) % 360 - 180
+ds = ds.sortby(ds.lon)
 ```
-  
 </p> </details> 
 
 [//]: # (This is the end.)  
