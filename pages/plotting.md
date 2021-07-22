@@ -193,11 +193,12 @@ gl = ax.gridlines(draw_labels=True, alpha=0.0, xlocs=np.arange(-160,181,20))
 gl.top_labels = False
 gl.right_labels = False
 ```
-  <div align="center"><table cellpadding="0" cellspacing="0">
+  <div align="center">
+    <table cellpadding="0" cellspacing="0">
     <tr><td align="center">ingrid</td><td align="center">cmap = 'jet'</td></tr>
     <tr><td align="center"><img src="../assets/imgs/color-contour-ingrid.png" width="80%"></td><td align="center"><img src="../assets/imgs/color-contour-jet.png"></td></tr>
     <tr><td align="center">cmap = 'bwr'</td><td align="center">cmap = 'jet'</td></tr>
-    <tr><td align="center"><img src="../assets/imgs/color-contour.png"></td><td align="center"><img src="../assets/imgs/color-contour-RdBu_r.png"</td></tr></table>
-    /div>
+    <tr><td align="center"><img src="../assets/imgs/color-contour.png"></td><td align="center"><img src="../assets/imgs/color-contour-RdBu_r.png"</td></tr>.         </table>
+    </div>
 </p> </details>
 
