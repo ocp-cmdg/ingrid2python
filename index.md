@@ -527,7 +527,7 @@ ds_monthly = ds.resample(time='1M',label='left',loffset='15D').mean()
 ```
 </p> </details>
     
-<details> <summary><b>Save Dataset as a Netcdf File</b></summary> <p>  
+<details> <summary><b>Save Dataset as a NetCDF File</b></summary> <p>  
 
 ```
 %ingrid:
