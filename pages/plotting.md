@@ -137,3 +137,63 @@ IRIDL has started using [hvplot](https://hvplot.holoviz.org/), which is an inter
   
 </p> </details>
 
+<details> <summary><b>Overlay Contours on Colors</b></summary> <p>  
+
+```
+%ingrid
+ SOURCES .DASILVA .SMD94 .anomalies .sst correlationcolorscale
+  DATA -2 2 RANGE
+  X -100 20 RANGE
+  Y 0 90 RANGE
+  /color_smoothing null def
+ SOURCES .DASILVA .SMD94 .anomalies .slp
+   X -100 20 RANGE
+   Y 0 90 RANGE
+   DATA 5 STEP
+   X Y fig: colors contours land :fig
+```
+<p align="center"><img src="../assets/imgs/color-contour-ingrid.png"></p>
+  
+```
+#python
+import xarray as xr
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import cartopy.crs as ccrs
+import cartopy.feature as cfeature  
+
+# Get the Dataset
+url = 'http://kage.ldeo.columbia.edu:81/SOURCES/.DASILVA/.SMD94/.anomalies/.sst/dods'
+url2 = 'http://kage.ldeo.columbia.edu:81/SOURCES/.DASILVA/.SMD94/.anomalies/.slp/dods'
+
+ds = xr.open_dataset(url,decode_times=False)
+ds['slp'] = xr.open_dataset(url2,decode_times=False).slp
+
+# Fix the grids
+ds['T'] = pd.date_range('1945-01',periods=len(ds.T), freq='MS').shift(15,freq='D')
+ds.coords['X'] = (ds.coords['X'] + 180) % 360 - 180
+ds = ds.sortby(ds.X)
+
+# Restrict the domain
+dss = ds.sel(X=slice(-100,20),Y=slice(-10,90)).isel(T=0).load()
+
+# Now make the figure
+fig = plt.figure(figsize=(8,8))
+
+ax = plt.axes(projection=ccrs.PlateCarree(central_longitude=0))
+ax.set_extent([-100, 20, 0, 90], crs=ccrs.PlateCarree())
+
+cb = dss.sst.plot.contourf(ax=ax, transform=ccrs.PlateCarree(), vmin=-2, vmax=2, levels=41, cmap='jet', add_colorbar=False,rasterized=True)
+CS = dss.slp.plot.contour(ax=ax, colors= 'k', transform=ccrs.PlateCarree(), vmin=-20,vmax=20,levels=9)
+CS.collections[4].set_linewidth(3) 
+ax.clabel(CS, inline=1, fontsize=8, fmt='%1.0f')
+ax.add_feature(cfeature.LAND,facecolor='k')
+cbar = plt.colorbar(cb, shrink=1.0, pad=.05, label=r'SSTA ($\degree C$)', orientation='horizontal')
+gl = ax.gridlines(draw_labels=True, alpha=0.0, xlocs=np.arange(-160,181,20))
+gl.top_labels = False
+gl.right_labels = False
+```
+<p align="center"><img src="../assets/imgs/color-contour-jet.png"></p>
+</p> </details>
+
