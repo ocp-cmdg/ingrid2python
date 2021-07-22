@@ -197,8 +197,8 @@ gl.right_labels = False
     <table cellpadding="0" cellspacing="0">
     <tr><td align="center">ingrid</td><td align="center">cmap = 'BlueOrange12_11'</td></tr>
     <tr><td align="center"><img src="../assets/imgs/color-contour-ingrid.png" width="80%"></td><td align="center"><img src="../assets/imgs/color-contour-BlueOrange12_11.png"></td></tr>
-    <tr><td align="center">cmap = 'bwr'</td><td align="center">cmap = 'jet'</td></tr>
-    <tr><td align="center"><img src="../assets/imgs/color-contour.png"></td><td align="center"><img src="../assets/imgs/color-contour-RdBu_r.png"</td></tr>.         </table>
+    <tr><td align="center">cmap = 'correlation'</td><td align="center">cmap = 'jet'</td></tr>
+    <tr><td align="center"><img src="../assets/imgs/color-contour-correlation.png"></td><td align="center"><img src="../assets/imgs/color-contour-RdBu_r.png"</td></tr>.         </table>
     </div>
 </p> </details>
 
