@@ -152,7 +152,7 @@ IRIDL has started using [hvplot](https://hvplot.holoviz.org/), which is an inter
    DATA 5 STEP
    X Y fig: colors contours land :fig
 ```
-<p align="center"><img src="../assets/imgs/color-contour-ingrid.png"></p>
+<p align="center"><img src="../assets/imgs/color-contour-ingrid.png" width="50%"></p>
   
 ```
 #python
@@ -194,7 +194,7 @@ gl = ax.gridlines(draw_labels=True, alpha=0.0, xlocs=np.arange(-160,181,20))
 gl.top_labels = False
 gl.right_labels = False
 ```
-  <div align="center"><table><tr><td>cmap = 'bwr'</td><td>cmap = 'jet'</td></tr>
+  <div align="center"><table cellpadding="0" cellspacing="0"><tr><td align="center">cmap = 'bwr'</td><td align="center">cmap = 'jet'</td></tr>
     <tr><td><img src="../assets/imgs/color-contour.png"></td><td><img src="../assets/imgs/color-contour-jet.png"></td></tr></table></div>
 </p> </details>
 
