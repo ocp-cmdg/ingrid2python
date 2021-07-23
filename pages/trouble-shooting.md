@@ -87,6 +87,7 @@ Many difficulties arise when the Longitude grid is [-180,180] and a calculation 
 ds = ds.sortby('lat')
   
 # Longitude [-180,180] to [0,360]
+import numpy as np
 ds.coords['lon'] = np.mod(ds['lon'], 360)
 ds = ds.reindex({ 'lon' : np.sort(ds['lon'])})
 
