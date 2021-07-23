@@ -507,7 +507,7 @@ ds.sst.mean('lat').sel(lon=slice(10,40)).integrate('lon')
 ```
 </p> </details>
 
-<details> <summary><b>Convert daily data to monthly </b></summary> <p>  
+<details> <summary><b>Convert Daily Data to Monthly </b></summary> <p>  
 
 ```
 %ingrid:
