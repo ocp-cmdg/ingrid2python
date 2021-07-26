@@ -87,7 +87,7 @@ ds.sst + 273.15
 ```
 </p> </details>
 
-<details> <summary><b>Data Selection by Grid value</b> </summary> <p>  
+<details> <summary><b>Data Selection by Grid Value</b> </summary> <p>  
 
 ```
 %ingrid:
