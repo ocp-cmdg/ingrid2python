@@ -9,19 +9,49 @@ title: Ingrid2Python
 - Search the web, someone else has almost always asked the question before!
 - \<Tab\> and \<Shift\>\<Tab\> give contextual help in a Jupyter Notebook
 
-<details> <summary><b>Time Grids</b></summary> <p>  
+<details> <summary><b>Replacing `Ingrid` Time Grids</b></summary> <p>  
   
-If your dataset, `ds`, is giving trouble with the time grid, `time`,  (as happens frequently), just replace it by a `datetime64` time grid.
-  
-So here is my crude recipe to replace troublesome time grids with time-centered `datetime64`. Note that there are many variations of frequencies, so please check your time grid after replacement and adjust the recipe accordingly.
+  For the most recent versions of `xarray`, we can replace an ingrid time grid just by changing its calendar and re-decoding. If `xr.decode_df` complains: "AttributeError: module 'cftime' has no attribute 'utime'", then you will need to hard code in the correct time using `pd.date_range`.
+
+New way:
   
 ```
-# Replace native time grid by new grid, centered in time
-ds=xr.open_dataset('test.nc').resample(time='A').mean()
+import xarray as xr
+  
+# Assuming the time grid is called 'T':
+url = 'http://iridl.ldeo.columbia.edu/SOURCES/.NOAA/.NCEP/.CPC/.CAMS_OPI/.v0208/.mean/.prcp/dods'
+ds = xr.open_dataset(url,decode_times=False)
+ds['T'].attrs['calendar'] = '360_day'  # Fix the calendar
+ds = xr.decode_cf(ds)                  # Now we can decode the time grid!
+```
+  
+Old way:
+```
+import xarray as xr
+import pandas as pd
+  
+url = 'http://iridl.ldeo.columbia.edu/SOURCES/.NOAA/.NCEP/.CPC/.CAMS_OPI/.v0208/.mean/.prcp/dods'
+ds = xr.open_dataset(url,decode_times=False)
+ds['T'] = pd.date_range('1979-01',periods = len(ds['T']),freq='MS').shift(15, freq='D') 
+```
+</p> </details> 
 
+<details> <summary><b>Tweaking CF-compliant Time Grids</b></summary> <p>  
+  
+If your dataset, `ds`, is giving trouble with the time grid, `time`,  (as happens frequently), just replace it!
+  
+So here is my crude recipe to replace troublesome standard time grids with time-centered `datetime64`. Note that there are many variations of frequencies, so please check your time grid after replacement and adjust the recipe accordingly.
+  
+```
+# Replace a time grid which starts at the first of the month to one which is centered in the month
+url = 'http://kage.ldeo.columbia.edu:81/SOURCES/.LOCAL/.sst.mon.mean.nc/dods'
+ds = xr.open_dataset(url)
+
+first_time = str(ds.time.values[0])
+  
 freq = xr.infer_freq(ds.time)
 print(freq)
-time = ds['time'] = pd.date_range(str(ds.time.values[0]), periods=len(ds.time), freq=freq)
+time = pd.date_range(first_time, periods=len(ds.time), freq=freq)
 if 'D' in freq:
     ds['time'] = time.shift(12, freq='H') 
 elif 'M' in freq:   
