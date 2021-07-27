@@ -84,7 +84,7 @@ import xarray as xr
 
 url = 'http://iridl.ldeo.columbia.edu/SOURCES/.WCRP/.GCOS/.GPCC/.FDP/.version2018/.1p0/.prcp/dods'
 
-ds = xr.open_dataset(url,decode_times=False,chunks={}).load()
+ds = xr.open_dataset(url,decode_times=False,chunks=-1).load()
 ds = ds.rename({'T':'time'}).sortby('Y').sel(X=slice(-120,-95),Y=slice(25,40))
 dst = ds.mean(['Y','X'])
 dst.prcp.plot()
