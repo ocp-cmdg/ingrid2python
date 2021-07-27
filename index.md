@@ -6,7 +6,9 @@ title: Ingrid2Python
 
 `ds` : an ingrid `stream` or an xarray `dataset`
 
-<details> <summary><b>Getting Started: Defining a Dataset </b></summary> <p>  
+<details> <summary><b>Getting Started: Defining a Dataset </b></summary> 
+    
+    <p>  
 
 [Ingrid on kage](http://kage.ldeo.columbia.edu:81/expert): 
 
@@ -37,7 +39,9 @@ N.B.:  A dataset/stream `ds` can contain multiple variables and grids. A dataarr
 
 </p> </details>
 
-<details> <summary><b>Selecting Variables and Dimensions</b> </summary> <p>  
+<details> <summary><b>Selecting Variables and Dimensions</b> </summary> 
+    
+    <p>  
 A dataset (stream) contains variables, grids, coordinates and metadata. These can be selected by similar methods for ingrid and python. Try selecting `.sst` and `.lon`
 
 ```
