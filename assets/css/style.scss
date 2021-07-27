@@ -23,3 +23,7 @@ detail {
     font-weight: bold;
 }
 table {border: none;}
+
+.markdown-body details summary {
+    display: list-item !important;
+  }
