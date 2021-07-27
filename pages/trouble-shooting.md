@@ -55,7 +55,7 @@ ds_new = da.to_dataset(name='sst')
   
 </p> </details> 
 
-<details> <summary><b>Information</b></summary> <p>  
+<details> <summary><b>Check Basic Information</b></summary> <p>  
     
 ```
 import xarray as xr
