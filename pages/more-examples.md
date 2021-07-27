@@ -12,6 +12,11 @@ Find the 3 leading EOFs and PCs. Note that ingrid and `eofs.xarray` use differen
 
 ```
 %ingrid:
+/ds {SOURCES .LOCAL .sst.mon.mean.nc
+% Replace the time grid by an 'ingrid-friendly' (but not CF-compliant) time.
+time /time (months since 1891-01-01) ordered 0.5 1 1565.5 NewEvenGRID replaceGRID
+} def
+  
 ds .sst {Y cosd}[lon lat][time]svd ev 1 3 RANGE
 ```
 
@@ -19,6 +24,9 @@ ds .sst {Y cosd}[lon lat][time]svd ev 1 3 RANGE
 #python:
 import xarray as xr
 from eofs.xarray import Eof  # see [documentation](https://ajdawson.github.io/eofs/latest/api/eofs.xarray.html)
+
+url = 'http://kage.ldeo.columbia.edu:81/SOURCES/.LOCAL/.sst.mon.mean.nc/.sst/dods'
+ds = xr.open_dataset(url)
   
 ds_anom = ds.groupby('time.month') - ds.groupby('time.month').mean()
 solver = Eof(ds_anom.sst)
