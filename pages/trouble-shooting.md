@@ -76,6 +76,22 @@ print(ds.dims)
   
 </p> </details> 
 
+<details> <summary><b>IRIDL OPeNDAP(dods) Data Corruption</b></summary> <p>  
+For `xarray` versions >= 16.1, the chunking of data can corrupt the dataset.  Although we don't know the root cause, there is a fix. Use `chunks=-1` (or `chunks={}`) in the call to `xr.open_dataset` to load the data in a single chunk. Then append a `.load()` to convert the dask object back to a `dataset`.
+  
+```
+import xarray as xr
+
+url = 'http://iridl.ldeo.columbia.edu/SOURCES/.WCRP/.GCOS/.GPCC/.FDP/.version2018/.1p0/.prcp/dods'
+
+ds = xr.open_dataset(url,decode_times=False,chunks={}).load()
+ds = ds.rename({'T':'time'}).sortby('Y').sel(X=slice(-120,-95),Y=slice(25,40))
+dst = ds.mean(['Y','X'])
+dst.prcp.plot()
+```
+  
+</p> </details> 
+
 [//]: # (This is the beginning.)  
 
 <details> <summary><b>Longitude and Latitude Grids</b></summary> <p>  
