@@ -166,8 +166,9 @@ SOURCES .NOAA .NCEP .CPC .CAMS .station .precipitation
 ```
 #python
 url = 'http://iridl.ldeo.columbia.edu/expert/SOURCES/.NOAA/.NCEP/.CPC/.CAMS/.station/.precipitation/dods'
-ds = xr.open_dataset(url,decode_times=False)
-dsl = ds.where((ds.lat<50) & (ds.lat>30)).where((ds.lon<-90) & (ds.lon>-110)).sel(T=slice('1856-01','2000-12')).mean('IWMO')
+ds = xr.open_dataset(url,decode_times=False,chunks=-1).load()
+dsl = ds.where((ds.lat<50) & (ds.lat>30)).where((ds.lon<-90) & (ds.lon>-110)).mean('IWMO')
+dsl['T'] = pd.date_range('01/01/1842', periods=len(dsl['T']), freq='MS').shift(15, freq='D')
 dsl_anom = dsl.groupby('T.month') - dsl.groupby('T.month').mean('T')
 dsl_anom.prcp.plot()
 ```
@@ -175,7 +176,7 @@ dsl_anom.prcp.plot()
 
 ```
 url = 'http://iridl.ldeo.columbia.edu/expert/SOURCES/.NOAA/.NCEP/.CPC/.CAMS/.station/.precipitation/dods'
-ds = xr.open_dataset(url,decode_times=False).mean('time')
+dsm = xr.open_dataset(url,decode_times=False).mean('T')
 fig = plt.figure(figsize=(9,6))
 ds.plot.scatter(x='lon',y='lat',c=dsm.prcp)
 ```
