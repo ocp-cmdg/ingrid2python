@@ -290,6 +290,5 @@ cbar.ax.set_ylabel('SST ($^\circ$C)', rotation=90,fontsize=14)
 
 plt.show()
 ```
-</p> </details>
-
 <p align="center"><img src="../assets/imgs/SST_hb.png" width="80%"></p>
+</p> </details>
