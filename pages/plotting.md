@@ -244,7 +244,7 @@ ds = xr.open_dataset(url,decode_times=False)
 # Fix the grids
 ds['T'] = pd.date_range('1945-01',periods=len(ds.T), freq='MS').shift(15,freq='D')
 
-#for center the plot to 60 (or any longitude)
+#for centering the plot to 60E (or any longitude)
 center_lon = 60
 ds_60W180E = ds.copy()
 ds_60W180E.coords['X'] = (ds_60W180E.coords['X']+180)%360 - center_lon
