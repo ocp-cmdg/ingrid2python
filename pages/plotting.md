@@ -221,3 +221,75 @@ ax.set_ylabel('latitude')
   <p align="center"><img src="../assets/imgs/color-contour-correlation.png" width="80%"></p>
 </p> </details>
 
+<details> <summary><b>Plot global SST centered at a given longitude</b></summary> <p>  
+
+```
+#python
+import pandas as pd
+import xarray as xr
+import numpy as np
+from matplotlib import pyplot as plt
+%matplotlib inline
+import cartopy
+from cartopy.util import add_cyclic_point
+import cartopy.crs as ccrs
+from cartopy.mpl.geoaxes import GeoAxes
+from mpl_toolkits.axes_grid1 import AxesGrid
+from cartopy.mpl.ticker import LongitudeFormatter, LatitudeFormatter
+
+# Get the Dataset
+url = 'http://kage.ldeo.columbia.edu:81/SOURCES/.DASILVA/.SMD94/.anomalies/.sst/dods'
+
+ds = xr.open_dataset(url,decode_times=False)
+# Fix the grids
+ds['T'] = pd.date_range('1945-01',periods=len(ds.T), freq='MS').shift(15,freq='D')
+
+#for center the plot to 60 (or any longitude)
+center_lon = 60
+ds_60W180E = ds.copy()
+ds_60W180E.coords['X'] = (ds_60W180E.coords['X']+180)%360 - center_lon
+ds_60W180E = ds_60W180E.sortby(ds_60W180E.X)
+
+# Prepare the figure
+fig = plt.figure(1,(8,8))
+projection = ccrs.PlateCarree(central_longitude=center_lon)
+axes_class = (GeoAxes,
+                  dict(map_projection=projection))
+axgr = AxesGrid(fig,111, axes_class=axes_class,
+    nrows_ncols=(1, 1),
+    axes_pad=0.6,
+    cbar_location='right',
+    cbar_mode='single',
+    cbar_pad=0.2,
+    cbar_size='3%',
+    label_mode='')  # note the empty label_mode    
+
+levels = np.arange(-4,4.2,0.2)
+for i, ax in enumerate(axgr):
+    data, lon = add_cyclic_point(ds.sst[0,:,:].values, coord=ds.X)
+    dumy, lon_60W180E = add_cyclic_point(ds_60W180E.sst.values, coord=ds_60W180E.X) # X=-180:180
+    ax.coastlines()
+    ax.set_xticks(np.linspace(-180,180, 10), crs=projection)
+    ax.set_yticks(np.linspace(-70,70, 15), crs=projection)
+    title = 'SST for ' + np.datetime_as_string(ds['T'][0].values, unit='M')
+    
+    ax.set_title(title,y=1.02)
+    lon_formatter = LongitudeFormatter(zero_direction_label=True)
+    lat_formatter = LatitudeFormatter()
+    ax.xaxis.set_major_formatter(lon_formatter)
+    ax.yaxis.set_major_formatter(lat_formatter)
+    ax.add_feature(cartopy.feature.BORDERS, linestyle='-.', linewidth=1,edgecolor='k')
+    p = ax.contourf(lon_60W180E, ds_60W180E.Y, data,levels,\
+                    transform=projection,\
+                    cmap='RdBu_r')
+
+ax.set_xlim([-180,180]) 
+ax.set_ylim([-70,75]) 
+cbar = axgr.cbar_axes[0].colorbar(p)
+cbar.ax.set_ylabel('SST ($^\circ$C)', rotation=90,fontsize=14)
+
+plt.show()
+```
+</p> </details>
+
+<p align="center"><img src="../assets/imgs/SST_hb.png" width="80%"></p>
