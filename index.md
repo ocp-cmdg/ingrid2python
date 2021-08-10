@@ -7,8 +7,7 @@ title: Ingrid2Python
 `ds` : an ingrid `stream` or an xarray `dataset`
 
 <details> <summary><b>Getting Started: Defining a Dataset </b></summary> 
-    
-    <p>  
+     
 
 [Ingrid on kage](http://kage.ldeo.columbia.edu:81/expert): 
 
