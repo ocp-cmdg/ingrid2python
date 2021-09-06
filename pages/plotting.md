@@ -137,7 +137,7 @@ IRIDL has started using [hvplot](https://hvplot.holoviz.org/), which is an inter
   
 </p> </details>
 
-<details> <summary><b>Overlay Contours on Colors</b><p align="center"><img src="../assets/imgs/color-contour-correlation.png" width="80%"></p></summary> <p>  
+<details> <summary><b>Overlay Contours on Colors - matching ingrid</b></summary> <p>  
 
 ```
 %ingrid
@@ -219,6 +219,7 @@ ax.set_xlabel('longitude')
 ax.set_ylabel('latitude')
 ```
  
+<p align="center"><img src="../assets/imgs/color-contour-correlation.png" width="80%"></p>
 </p> </details>
 
 <details> <summary><b>Plot Nino3.4 box on a cartopy plot</b><p align="center"><img src="../assets/imgs/CartopyRect-with-Label.png" width="80%"></p>
