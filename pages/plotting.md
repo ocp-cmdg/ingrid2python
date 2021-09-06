@@ -271,7 +271,7 @@ ax.add_feature(cfeature.COASTLINE, linewidth=1.0)
 ax.add_feature(cfeature.BORDERS, linewidth=0.5)
 
 # Use the figsize to determine the aspect ratio, not cartopy
-ax.set_aspect('auto')
+# ax.set_aspect(1.5) # may clip bottom label
 
 # Label x-axis and make tick labels
 ax.xaxis.set_label_text('Longitude',fontsize=8)
