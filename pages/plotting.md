@@ -271,7 +271,7 @@ ax.add_feature(cfeature.COASTLINE, linewidth=1.0)
 ax.add_feature(cfeature.BORDERS, linewidth=0.5)
 
 # Use the figsize to determine the aspect ratio, not cartopy
-# ax.set_aspect(1.5) # may clip bottom label
+ax.set_aspect('auto')
 
 # Label x-axis and make tick labels
 ax.xaxis.set_label_text('Longitude',fontsize=8)
@@ -281,7 +281,7 @@ ax.xaxis.set_minor_locator(MultipleLocator(10))
 
 # Label y-axis and make tick labels
 ax.yaxis.set_label_text('Latitude',fontsize=8)
-plt.yticks(np.arange(-20,21,20), rotation=90, va='center')
+plt.yticks(np.arange(-40,41,20), rotation=90, va='center')
 ax.yaxis.set_major_formatter(LatitudeFormatter())
 ax.yaxis.set_minor_locator(MultipleLocator(10))
 
@@ -296,7 +296,8 @@ ax.annotate('NINO3.4', xy=(215, 8), xycoords=crs._as_mpl_transform(ax), ha='cent
 
 cbar = plt.colorbar(cs, extendrect = True, label=r'SSTA [$\degree C$]')
   
-plt.title('SST anomalies, June 2021');
+plt.title('SST anomalies, June 2021')
+plt.tight_layout();
 
 ```
   
