@@ -4,7 +4,7 @@ title: Ingrid2Python
 
 ## Plotting Examples
 
-<details> <summary><b>Projections/Transforms/Features</b></summary> <p>  
+<details> <summary><b>Projections/Transforms/Features</b><p align="center"><img src="../assets/imgs/basic-cartopy.png"></p></summary> <p>  
 
 ```
 import xarray as xr
@@ -38,11 +38,11 @@ Add [feature](https://scitools.org.uk/cartopy/docs/latest/matplotlib/feature_int
 ```
 ax.add_feature(cfeature.BORDERS)
 ```
-<p align="center"><img src="../assets/imgs/basic-cartopy.png"></p>
+
 </p> </details>
 
 
-<details> <summary><b>More Features, Labels</b></summary> <p>  
+<details> <summary><b>More Features, Labels</b><p align="center"><img src="../assets/imgs/more-cartopy.png"></p></summary> <p>  
 
 ```
 import numpy as np
@@ -83,10 +83,10 @@ ax.add_feature(states_provinces, edgecolor='gray')
 gl = ax.gridlines(draw_labels=True, alpha=0.0, xlocs=np.arange(-160,181,20))
 gl.top_labels = False
 ```
-<p align="center"><img src="../assets/imgs/more-cartopy.png"></p>
+
 </p> </details>
 
-<details> <summary><b>Subplots</b></summary> <p>  
+<details> <summary><b>Subplots</b><p align="center"><img src="../assets/imgs/xarray-subplots.png"></p></summary> <p>  
 
 The built-in xarray plotting allows for multiple plots:
   
@@ -95,12 +95,12 @@ ds = xr.open_dataset('http://kage.ldeo.columbia.edu:81/SOURCES/.LOCAL/.sst.mon.m
 ds_mon_anom = ds.groupby('time.month').mean() - ds.mean('time')
 ds_mon_anom.sst.plot(x='lon',y='lat',col='month',col_wrap=4,add_colorbar=0);
 ```
-<p align="center"><img src="../assets/imgs/xarray-subplots.png"></p>
+
   
 But much more control is possible when using `matplotlib` directly, see [subplots](https://matplotlib.org/stable/gallery/subplots_axes_and_figures/subplots_demo.html).
 </p> </details>
 
-<details> <summary><b>Reversing Grid Direction</b></summary> <p>  
+<details> <summary><b>Reversing Grid Direction</b><p align="center"><img src="../assets/imgs/theta.png"></p></summary> <p>  
 
 The keyword arguments `xincrease` and `yincrease` control the axis direction. 
    
@@ -111,7 +111,7 @@ ds = xr.open_dataset(url,decode_times=False).sel(deptht=slice(0,300),lat=slice(-
 
 ds.thetao.sel(lat=slice(-2,2)).mean('lat').plot.contourf(vmin=10,vmax=30,levels=11,yincrease=False)
 ```
-<p align="center"><img src="../assets/imgs/theta.png"></p>
+
   
 </p> </details>
 <details> <summary><b>Types of Plots</b></summary> <p>  
@@ -137,7 +137,7 @@ IRIDL has started using [hvplot](https://hvplot.holoviz.org/), which is an inter
   
 </p> </details>
 
-<details> <summary><b>Overlay Contours on Colors</b></summary> <p>  
+<details> <summary><b>Overlay Contours on Colors</b><p align="center"><img src="../assets/imgs/color-contour-correlation.png" width="80%"></p></summary> <p>  
 
 ```
 %ingrid
@@ -218,10 +218,11 @@ ax.yaxis.set_major_formatter(LatitudeFormatter())
 ax.set_xlabel('longitude')
 ax.set_ylabel('latitude')
 ```
-  <p align="center"><img src="../assets/imgs/color-contour-correlation.png" width="80%"></p>
+ 
 </p> </details>
 
-<details> <summary><b>Plot Nino3.4 box on a cartopy plot</b></summary> <p>  
+<details> <summary><b>Plot Nino3.4 box on a cartopy plot</b><p align="center"><img src="../assets/imgs/CartopyRect-with-Label.png" width="80%"></p>
+</summary> <p>  
 
 ```
 import xarray as xr
@@ -298,5 +299,4 @@ plt.title('SST anomalies, June 2021');
 
 ```
   
-<p align="center"><img src="../assets/imgs/CartopyRect-with-Label.png" width="80%"></p>
 </p> </details>
