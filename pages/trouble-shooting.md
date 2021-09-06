@@ -137,8 +137,16 @@ import numpy as np
 ds.coords['lon'] = np.mod(ds['lon'], 360)
 ds = ds.reindex({ 'lon' : np.sort(ds['lon'])})
 
-# Longitude [0,360] to [-180,180] 
-ds.coords['lon'] = (ds.coords['lon'] + 180) % 360 - 180
+# Longitude [0,360] to [lon_start,360+lon_start] 
+ds.coords['lon'] = (ds.coords['lon'] - lon_start) % 360 + lon_start
 ds = ds.sortby(ds.lon)
+```
+</p> </details> 
+
+<details> <summary><b>Clipped or Overlapping labels</b></summary> <p>  
+Don't forget to throw in a `plt.tight_layout()` command whenever you are having trouble with the bottom label being clipped, or multiple plots being squished together! Make sure you use it BEFORE saving the plot!
+  
+```
+plt.tight_layout()
 ```
 </p> </details> 
