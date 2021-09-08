@@ -35,6 +35,10 @@ ipython kernel install --user --name=my-pangeo
 conda deactivate
 ```
 
+5. Make another environment/kernel, after modifying pangeo.yml:
+
+    repeat steps 3. and 4. with 'my-pangeo' replaced by a new name!
+    
 ### CONGRATULATIONS! - now you can shift-reload your jupyterhub browser page and check it out!
 
 ---
@@ -76,7 +80,7 @@ conda deactivate
 - Update/remove a package. Same as above with update(remove) instead of install
 
 
-- If there is trouble with making a new notebook from the hub, you might need to:
+- If you cannot use the jupyterhub interface to add new notebook, you might need to:
   - kill off all of your notebooks (go to >File >Hub Control Panel  and shutdown hub and then logoff)
   - mv ~/.npm ~/.npm-disable
   - log back into your jupyter notebook
