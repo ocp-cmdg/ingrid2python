@@ -456,7 +456,9 @@ ds .sst {lat cosd}[lon lat]weighted-average
 ```
 #python:
 weights = np.cos(np.deg2rad(ds.lat))
-ds.sst.weighted(weights).mean(('lon', 'lat'))
+ds.sst.weighted(weights).mean(['lon', 'lat'])
+     
+# NOTE: this is NOT the same as ds.sst.weighted(weights).mean('lon').mean('lat')
 ```
 </p> </details>
 
