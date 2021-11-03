@@ -214,7 +214,7 @@ ds .sst [time] 1 SM121
 
 ```
 #python:
-ds.sst.pad(time=1,mode='symmetric').rolling(time=3, center=True).mean().dropna('time')
+ds.sst.pad(time=1,mode='symmetric').rolling(time=3, center=True).mean()
 ```
 </p> </details>
 
@@ -227,7 +227,7 @@ ds .sst [time] 1 SM121
 
 ```
 #python:
-ds.sst.pad(time=1, mode='wrap').rolling(time=3, center=True).mean().dropna('time')
+ds.sst.pad(time=1, mode='wrap').rolling(time=3, center=True).mean()
 ```
 </p> </details>
 
