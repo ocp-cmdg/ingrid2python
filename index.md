@@ -556,7 +556,7 @@ ds_monthly.to_netcdf('tas.mon.mean.nc')
 ```
 </p> </details>
      
-<details> <summary><b>replace NaNs</b></summary> <p>  
+<details> <summary><b>Replace NaNs</b></summary> <p>  
 
 ```
 %ingrid:
