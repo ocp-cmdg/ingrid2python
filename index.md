@@ -555,6 +555,20 @@ ds_monthly = ds.resample(time='1M',label='left',loffset='15D').mean()
 ds_monthly.to_netcdf('tas.mon.mean.nc')
 ```
 </p> </details>
+     
+<details> <summary><b>replace NaNs</b></summary> <p>  
+
+```
+%ingrid:
+ds .sst  100 replaceNaN
+```
+    
+```
+#python:  
+ds.fillna(100)   
+```
+</p> </details>
+
 
      
 -----------
