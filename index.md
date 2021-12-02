@@ -569,6 +569,25 @@ ds.fillna(100)
 ```
 </p> </details>
 
+<details> <summary><b>Regridding in lat and lon</b></summary> <p>  
+
+```
+%ingrid:
+
+```
+    
+```
+#python:    
+import xesmf as xe
+     
+ds_regrid = xr.Dataset({'lon': (['lon'], np.arange(0.5, 359.5, 1.0, dtype='float32')),
+                     'lat': (['lat'], np.arange(-88.5, 88.5, 1.0, dtype='float32')),
+                             })
+regridder = xe.Regridder(ds_org, ds_regrid, 'bilinear', periodic=True)
+ds_regrid = regridder(ds)     
+```
+</p> </details>
+
 
      
 -----------
