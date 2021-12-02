@@ -584,7 +584,7 @@ ds_regrid = xr.Dataset({'lon': (['lon'], np.arange(0.5, 359.5, 1.0, dtype='float
                      'lat': (['lat'], np.arange(-88.5, 88.5, 1.0, dtype='float32')),
                              })
 regridder = xe.Regridder(ds_org, ds_regrid, 'bilinear', periodic=True)
-ds_regrid = regridder(ds)     
+ds_regrid = regridder(ds_org)     
 ```
 </p> </details>
 
