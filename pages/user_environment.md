@@ -17,7 +17,6 @@ which python
 
 ```
 conda config --add channels conda-forge --force
-conda config --remove channels defaults --force
 conda update --all
 ```
 
@@ -25,14 +24,14 @@ conda update --all
 
 ```
 wget https://raw.githubusercontent.com/ocp-cmdg/ingrid2python/main/assets/pangeo.yml
-conda env create -f pangeo.yml
+conda env create -f pangeo.yml -n my-pangeo
 ```
 
 4. Add new kernel to your jupyterhub list:
 
 ```
 conda activate pangeo-Dec2021
-ipython kernel install --user --name=pangeo-Dec2021 --display-name pangeo-Dec2021
+ipython kernel install --user --name=my-pangeo
 conda deactivate
 ```
 
