@@ -1,33 +1,16 @@
-## Installation Steps:
+## Make Your Own Python Environment/Kernel:
 
-1. Install your own copy of `conda`:
+- You will need to have a workable `conda` installed, either the system one or your own (see [Installing Conda](https://) )
 
-```
-cd ~
-wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
-chmod +x Miniconda3-latest-Linux-x86_64.sh
-./Miniconda3-latest-Linux-x86_64.sh
-# read license, accept terms, accept default installation location, let installer run conda init
-source ~/.bashrc
-# test to see if python = ~/miniconda3/bin/python
-which python
-```
-
-2. Configure `conda`:
-
-```
-conda config --add channels conda-forge --force
-conda update --all
-```
-
-3. Make new environment/kernel:
+1. Make new environment/kernel:
 
 ```
 wget https://raw.githubusercontent.com/ocp-cmdg/ingrid2python/main/assets/pangeo.yml
+# edit pangeo.yml, adding other packages you would like to start with
 conda env create -f pangeo.yml -n my-pangeo
 ```
 
-4. Add new kernel to your jupyterhub list:
+2. Add new kernel to your jupyter list:
 
 ```
 conda activate my-pangeo
@@ -35,9 +18,9 @@ ipython kernel install --user --name=my-pangeo
 conda deactivate
 ```
 
-5. Make another environment/kernel, after modifying pangeo.yml:
+3. Make another environment/kernel, after modifying pangeo.yml:
 
-    repeat steps 3. and 4. with 'my-pangeo' replaced by a new name!
+    repeat steps 1. and 2. with 'my-pangeo' replaced by a new name!
     
 ### CONGRATULATIONS! - now you can shift-reload your jupyterhub browser page and check it out!
 
@@ -64,7 +47,7 @@ cd ~/miniconda3/envs/my-pangeo/lib/python3.7/site-packages/
 ```
 
 
-- Add a package:
+- Add another package to your kernel:
 
 ```
 conda activate my-pangeo
@@ -72,7 +55,7 @@ conda install package-name
 conda deactivate
 ```
 
-- Update/remove a package. Same as above with update(remove) instead of install
+- Update/remove a package from your kernel. Same as above with update(remove) instead of install
 
 
 - If you cannot use the jupyterhub interface to add new notebook, you might need to:
