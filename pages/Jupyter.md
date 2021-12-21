@@ -4,7 +4,7 @@ title: Ingrid2Python
 
 ## Sample Notebooks
 1. [User contributed notebooks](https://github.com/ocp-cmdg/ingrid2python/tree/main/notebooks)
-2. Submit and issue to see if anyone has an example of what you need!
+2. [Submit an issue](https://github.com/ocp-cmdg/ingrid2python/issues) to see if anyone has an example of what you need!
 
 ## Setting up a Jupyter browser page
 (no `root` priviledges necessary!)
