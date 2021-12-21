@@ -68,7 +68,7 @@ cd ~/miniconda3/envs/pangeo-Dec2021/lib/python3.7/site-packages/
 - Add a package:
 
 ```
-conda activate my-pangeo
+conda activate pangeo-Dec2021
 conda install package-name
 conda deactivate
 ```
