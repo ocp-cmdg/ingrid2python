@@ -24,8 +24,8 @@ conda update --all
 3. Make new environment/kernel:
 
 ```
-wget https://raw.githubusercontent.com/ocp-cmdg/ingrid2python/main/assets/pangeo-Dec2021.yml
-conda env create -f pangeo-Dec2021.yml
+wget https://raw.githubusercontent.com/ocp-cmdg/ingrid2python/main/assets/pangeo.yml
+conda env create -f pangeo.yml
 ```
 
 4. Add new kernel to your jupyterhub list:
