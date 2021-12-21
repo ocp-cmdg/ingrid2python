@@ -1,6 +1,6 @@
-# Once you have conda, you can start your own Jupyter or JupyterLab
+- You will need to have a workable `conda` installed, either the system one or your own (see [Installing Conda](https://github.com/ocp-cmdg/ingrid2python/blob/main/pages/install_conda.md) )
 
-First choose whether you want a Jupyter Notebook, or a Jupyter Lab:
+# First choose whether you want a Jupyter Notebook, or a Jupyter Lab:
 
 <table>
   <tr><td>1a. Jupyter Notebook</td><td>1b. Jupyter Lab</td></tr>
