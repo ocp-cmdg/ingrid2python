@@ -577,7 +577,9 @@ ds.interpolate_na(dim='lon',method='nearest').interpolate_na(dim='lat',method='l
 
 ```
 %ingrid:
-
+home .datasets .ERA5-monthly .ingrid-ready .sst
+  X 0 2.5 357.5 GRID
+  Y -90 2.5 90 GRID     
 ```
     
 ```
