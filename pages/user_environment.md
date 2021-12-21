@@ -24,21 +24,21 @@ conda update --all
 3. Make new environment/kernel:
 
 ```
-cp /usr/local/python/pangeo.yml .
-conda env create -n my-pangeo -f pangeo.yml
+wget https://raw.githubusercontent.com/ocp-cmdg/ingrid2python/main/assets/pangeo-Dec2021.yml
+conda env create -f pangeo-Dec2021.yml
 ```
 
 4. Add new kernel to your jupyterhub list:
 
 ```
-conda activate my-pangeo
-ipython kernel install --user --name=my-pangeo
+conda activate pangeo-Dec2021
+ipython kernel install --user --name=pangeo-Dec2021 --display-name pangeo-Dec2021
 conda deactivate
 ```
 
 5. Make another environment/kernel, after modifying pangeo.yml:
 
-    repeat steps 3. and 4. with 'my-pangeo' replaced by a new name!
+    repeat steps 3. and 4. with 'pangeo-Dec2021' replaced by a new name!
     
 ### CONGRATULATIONS! - now you can shift-reload your jupyterhub browser page and check it out!
 
@@ -49,24 +49,19 @@ conda deactivate
 - See all of your own environments (kernels):
 
 ```
-conda activate my-pangeo
 jupyter kernelspec list
-conda deactivate
 ```
 
 - Remove this environment:
 
 ```
-conda activate my-pangeo
 jupyter kernelspec uninstall my-pangeo
-conda deactivate
 ```
-
 
 - See the source code of all of your packages:
 
 ```
-cd ~/miniconda3/envs/my-pangeo/lib/python3.7/site-packages/
+cd ~/miniconda3/envs/pangeo-Dec2021/lib/python3.7/site-packages/
 ```
 
 
