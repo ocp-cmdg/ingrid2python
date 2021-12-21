@@ -1,3 +1,7 @@
+---
+title: Ingrid2Python
+---
+
 ## Make Your Own Python Environment/Kernel:
 
 - You will need to have a workable `conda` installed, either the system one or your own (see [Installing Conda](https://github.com/ocp-cmdg/ingrid2python/blob/main/pages/install_conda.md) )
