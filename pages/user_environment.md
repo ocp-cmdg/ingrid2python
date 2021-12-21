@@ -1,6 +1,6 @@
 ## Make Your Own Python Environment/Kernel:
 
-- You will need to have a workable `conda` installed, either the system one or your own (see [Installing Conda](https://) )
+- You will need to have a workable `conda` installed, either the system one or your own (see [Installing Conda](https://github.com/ocp-cmdg/ingrid2python/blob/main/pages/install_conda.md) )
 
 1. Make new environment/kernel:
 
@@ -18,11 +18,7 @@ ipython kernel install --user --name=my-pangeo
 conda deactivate
 ```
 
-3. Make another environment/kernel, after modifying pangeo.yml:
-
-    repeat steps 1. and 2. with 'my-pangeo' replaced by a new name!
-    
-### CONGRATULATIONS! - now you can shift-reload your jupyterhub browser page and check it out!
+### CONGRATULATIONS! - now you can shift-reload your jupyter browser page and your new kernel should be added to the list!
 
 ---
 
