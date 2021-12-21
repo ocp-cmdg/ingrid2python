@@ -1,3 +1,7 @@
+---
+title: Ingrid2Python
+---
+
 ## Installing conda, the python package and environment manager:
 
 1. Install your own copy of `conda`:
