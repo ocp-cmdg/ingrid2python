@@ -22,7 +22,7 @@ ipython kernel install --user --name=my-pangeo
 conda deactivate
 ```
 
-CONGRATULATIONS! - now you can shift-reload your jupyter browser page and your new kernel should be added to the list!
+CONGRATULATIONS! - your new kernel should be added to the list!
 
 ---
 
