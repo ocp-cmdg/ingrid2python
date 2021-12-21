@@ -2,7 +2,7 @@
 title: Ingrid2Python
 ---
 
-- You will need to have a workable `conda` installed, either the system one or your own (see [Installing Conda](/ingrid2python/pages/install_conda.html) )
+- You will need to have a workable `conda` installed, either the system one or your own (see [Installing Conda](https://ocp-cmdg.github.io/ingrid2python/pages/install_conda.html) )
 
 # First choose whether you want a Jupyter Notebook, or a Jupyter Lab:
 
