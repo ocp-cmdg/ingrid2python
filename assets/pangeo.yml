@@ -20,6 +20,7 @@ dependencies:
   - intake
   - intake-esm
   - intake-xarray
+  - ipyparallel
   - ipykernel
   - ipyleaflet
   - ipywidgets
