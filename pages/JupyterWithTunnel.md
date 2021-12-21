@@ -3,7 +3,7 @@ title: Ingrid2Python
 ---
 
 - This allows you to run Jupyter on a REMOTE machine, while using a browser on your LOCAL machine.
-- You will need to have a workable `conda` installed on REMOTE, either the system one or your own (see [Installing Conda](https://ocp-cmdg.github.io/ingrid2python/pages/install_conda.html) )
+- You will need to have a workable `conda` installed on REMOTE, see [Installing Conda](https://ocp-cmdg.github.io/ingrid2python/pages/install_conda.html)
 - If you have already been using Jupyter on REMORE, you will have some hidden directories in your home directory which may need to be deleted or renamed.  E.g., `.conda`, `.ipython`, `.jupyter`
 
 # First choose whether you want a Jupyter Notebook, or a Jupyter Lab:
