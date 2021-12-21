@@ -58,7 +58,7 @@ conda deactivate
 - Update/remove a package from your kernel. Same as above with update(remove) instead of install
 
 
-- If you cannot use the jupyterhub interface to add new notebook, you might need to:
+- [advanced] If you cannot use the jupyterhub interface to add a new notebook, you might need to:
   - kill off all of your notebooks (go to >File >Hub Control Panel  and shutdown hub and then logoff)
   - mv ~/.npm ~/.npm-disable
   - log back into your jupyter notebook
