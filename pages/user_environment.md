@@ -9,6 +9,8 @@ chmod +x Miniconda3-latest-Linux-x86_64.sh
 ./Miniconda3-latest-Linux-x86_64.sh
 # read license, accept terms, accept default installation location, let installer run conda init
 source ~/.bashrc
+# test to see if python = ~/miniconda3/bin/python
+which python
 ```
 
 2. Configure `conda`:
@@ -16,15 +18,14 @@ source ~/.bashrc
 ```
 conda config --add channels conda-forge --force
 conda config --remove channels defaults --force
-conda install mamba -y    # use mamba, which is faster than conda
-mamba update --all
+conda update --all
 ```
 
 3. Make new environment/kernel:
 
 ```
 cp /usr/local/python/pangeo.yml .
-mamba env create -n my-pangeo -f pangeo.yml
+conda env create -n my-pangeo -f pangeo.yml
 ```
 
 4. Add new kernel to your jupyterhub list:
