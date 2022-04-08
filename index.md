@@ -594,6 +594,24 @@ ds_orig_regridded = regridder(ds_orig)
 ```
 </p> </details>
 
+<details> <summary><b>Smooth 2D field</b></summary> <p>  
+
+```
+%ingrid:
+     expert
+ SOURCES .NOAA .NCEP-NCAR .CDAS-1 .MONTHLY .Intrinsic .PressureLevel .rhum
+  [X Y]1 SM121
+
+```
+    
+```
+#python:    
+     import scipy.ndimage as ndimage
+     ds_array_smoothed = ndimage.gaussian_filter(ds_array, sigma=5, order=0)
+
+```
+</p> </details>
+
 
      
 -----------
